@@ -2,7 +2,6 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { UserContext } from "./Contexts/UserContext";
-import { useContext } from "react";
 import Header from "./Components/Header";
 import Nav from "./Components/Nav";
 import Home from "./Components/Home";
