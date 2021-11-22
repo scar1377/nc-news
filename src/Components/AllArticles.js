@@ -24,7 +24,7 @@ const Articles = () => {
               {article.vote}
             </li>
             <li key={article.body} className="article_title">
-              {article.body.slice(20)}
+              {article.body}
             </li>
             <li key={article.created_at} className="created_at">
               {article.created_at}
