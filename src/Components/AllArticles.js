@@ -14,23 +14,20 @@ const Articles = () => {
       {articles.map((article) => {
         return (
           <ul>
-            <li key={article.author} className="article_author">
+            <li key={`${article.article_id}_author`} className="article_author">
               {article.author}
             </li>
-            <li key={article.title} className="article_title">
+            <li key={`${article.article_id}_title`} className="article_title">
               {article.title}
             </li>
-            <li key={article.vote} className="article_title">
-              {article.vote}
+            <li key={`${article.article_id}_votes`} className="article_votes">
+              {article.votes}
             </li>
-            <li key={article.body} className="article_title">
-              {article.body}
-            </li>
-            <li key={article.created_at} className="created_at">
+            <li key={`${article.article_id}_created_at`} className="created_at">
               {article.created_at}
             </li>
             <button
-              key={`${article.article_id}kudosUpButton`}
+              key={`${article.article_id}_kudo_up_button`}
               // onClick={() => {
               // 	updateKudos(user.avatar_url, user.username, 1).then(() => {
               // 		setUsers(users);
@@ -40,7 +37,7 @@ const Articles = () => {
               Vote +1
             </button>
             <button
-              key={`${article.article_id}kudosDownButton`}
+              key={`${article.article_id}_kudo_down_button`}
               // onClick={() => {
               // 	updateKudos(user.avatar_url, user.username, 1).then(() => {
               // 		setUsers(users);
