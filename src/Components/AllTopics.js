@@ -1,8 +1,10 @@
 import { getAllTopics } from "../utils/api";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const Topics = () => {
+  const navigate = useNavigate();
   const [topics, setTopics] = useState([]);
   useEffect(() => {
     getAllTopics().then((topicsFromApi) => {
@@ -20,11 +22,9 @@ const Topics = () => {
               <p>{topic.description}</p>
               <button
                 className="goto topic-related-articles"
-                // onClick={() => {
-                // 	updateKudos(user.avatar_url, user.username, 1).then(() => {
-                // 		setUsers(users);
-                // 	});
-                // }}
+                onClick={() => {
+                  navigate(`/topics/${topic.slug}`);
+                }}
               >
                 Related Articles
               </button>

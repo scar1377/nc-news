@@ -84,17 +84,21 @@
   opacity: 0.3;
 }
 
-.user-container:hover .middle {
+/* .user-container:hover .middle {
   opacity: 1;
-}
+} */
 
-.user-page {
-  background-color: #4caf50;
-  color: white;
+.user-name {
+  color: rgb(13, 61, 9);
   font-size: 16px;
   padding: 16px 32px;
+}
+.user-name:hover {
+  color: orangered;
 }
 
 li {
   border: 2px solid brown;
+  list-style: none;
+  margin: 5px auto;
 }

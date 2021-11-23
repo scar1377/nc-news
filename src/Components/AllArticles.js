@@ -11,6 +11,23 @@ const Articles = () => {
   return (
     <main key="articles-main" className="Articles">
       <h1 key="articles-h1">Articles</h1>
+      <section className="sort-bar">
+        <div>
+          <select className="sort-by">
+            <option key="created_at" selected="selected">
+              date created
+            </option>
+            <option key="comment_count">comment amount</option>
+            <option key="votes">votes</option>
+          </select>
+          <select className="order">
+            <option key="a_z">A-Z</option>
+            <option key="z_a" selected="selected">
+              Z-A
+            </option>
+          </select>
+        </div>
+      </section>
       <ul>
         {articles.map((article) => {
           return (

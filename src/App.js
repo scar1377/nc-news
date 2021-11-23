@@ -8,6 +8,7 @@ import Home from "./Components/Home";
 import Articles from "./Components/AllArticles";
 import SingleArticle from "./Components/SingleArticle";
 import Topics from "./Components/AllTopics";
+import SingleTopic from "./Components/SingleTopic";
 import CommentsByArticle from "./Components/CommentsByArticle";
 import SingleComment from "./Components/SingleComment";
 import Users from "./Components/AllUsers";
@@ -27,6 +28,7 @@ function App() {
             <Route path="/articles" element={<Articles />} />
             <Route path="/articles/:article_id" element={<SingleArticle />} />
             <Route path="/topics" element={<Topics />} />
+            <Route path="/topics/:slug" element={<SingleTopic />} />
             <Route
               path="/articles/:article_id/comments"
               element={<CommentsByArticle />}

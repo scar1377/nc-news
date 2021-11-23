@@ -15,6 +15,11 @@ export const getAllTopics = () => {
     return res.data.topics;
   });
 };
+export const getSingleTopic = (slug) => {
+  return topicsApi.get("/:slug").then((res) => {
+    return res.data.topic;
+  });
+};
 
 export const getAllUsers = () => {
   return usersApi.get("/").then((res) => {
@@ -42,7 +47,6 @@ export const getSingleArticle = (article_id) => {
 
 export const getCommentsByArticle = (article_id) => {
   return articlesApi.get(`/${article_id}/comments`).then((res) => {
-    console.log(res.data.comments);
     return res.data.comments;
   });
 };

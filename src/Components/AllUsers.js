@@ -6,7 +6,6 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 const Users = () => {
   const { username, setUsername } = useContext(userContext);
-  // const [onClickUsername, setOnClickUsername] = useState();
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
@@ -31,8 +30,8 @@ const Users = () => {
                     alt={user.name}
                   />
                 </p>
-                <p>{user.name}</p>
-                <div className="middle">Go to their page</div>
+                <h2 className="user-name">{user.name}</h2>
+                {/* <div className="middle">Go to their page</div> */}
               </Link>
             </li>
           );
