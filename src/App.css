@@ -29,6 +29,7 @@
 
 .Nav {
   border: 2px solid plum;
+  padding: 5px;
 }
 
 .Articles {
@@ -41,9 +42,13 @@
 .Nav-link {
   color: #083a13;
   padding: 5px 10px;
+  position: relative;
+  left: 20px;
 }
 .Nav-login {
   display: inline-block;
+  position: fixed;
+  right: 20px;
 }
 
 .user-container {

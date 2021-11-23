@@ -20,9 +20,12 @@ const SingleUser = () => {
 
   useEffect(() => {
     getAllArticles().then((articlesFromApi) => {
-      setArticles(articlesFromApi);
+      const articlesByUser = articlesFromApi.filter(
+        (article) => article.author === username
+      );
+      setArticles(articlesByUser);
     });
-  });
+  }, []);
 
   return (
     <main className="SingleUser">
@@ -31,43 +34,41 @@ const SingleUser = () => {
       <img src={singleUser.avatar_url} alt={singleUser.name} />
       <section className="articles-by-user">
         <ul>
-          {articles
-            .filter((article) => article.author === username)
-            .map((article) => {
-              return (
-                <li
-                  key={`${article.article_id}_by_user`}
-                  className="article-by-user"
+          {articles.map((article) => {
+            return (
+              <li
+                key={`${article.article_id}_by_user`}
+                className="article-by-user"
+              >
+                <Link
+                  to={`/articles/${article.article_id}`}
+                  className="go-to article-page"
                 >
-                  <Link
-                    to={`/articles/${article.article_id}`}
-                    className="go-to article-page"
+                  <p key={`${article.article_id}_author_by_user`}>
+                    {article.author}
+                  </p>
+                  <p
+                    key={`${article.article_id}_title_by_user`}
+                    className="article-title"
                   >
-                    <p key={`${article.article_id}_author_by_user`}>
-                      {article.author}
-                    </p>
-                    <p
-                      key={`${article.article_id}_title_by_user`}
-                      className="article-title"
-                    >
-                      {article.title}
-                    </p>
-                    <p
-                      key={`${article.article_id}_votes_by_user`}
-                      className="votes article-votes"
-                    >
-                      {article.votes}
-                    </p>
-                    <p
-                      key={`${article.article_id}_created_at_by_user`}
-                      className="article-created-at"
-                    >
-                      {article.created_at}
-                    </p>
-                  </Link>
-                </li>
-              );
-            })}
+                    {article.title}
+                  </p>
+                  <p
+                    key={`${article.article_id}_votes_by_user`}
+                    className="votes article-votes"
+                  >
+                    {article.votes}
+                  </p>
+                  <p
+                    key={`${article.article_id}_created_at_by_user`}
+                    className="article-created-at"
+                  >
+                    {article.created_at}
+                  </p>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </section>
     </main>

@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import { userContext } from "../Contexts/userContext";
 import { useContext } from "react";
+import { useState } from "react";
 import { getSingleUser } from "../utils/api";
 import { useNavigate } from "react-router";
 const Nav = () => {
   const navigate = useNavigate();
-  const { setUsername } = useContext(userContext);
+  // const [username, setUsername] = useState();
+  const { setCurrentUser } = useContext(userContext);
   let usernameOnChange = "";
   // let personalInfo = "";
   // if (user.name) {
@@ -23,35 +25,44 @@ const Nav = () => {
       <Link to="/users" className="Nav-link">
         <span>Users</span>
       </Link>
-      <Link to="/my_account" className="Nav-link">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            getSingleUser(usernameOnChange)
-              .then((res) => {
-                if (res.username === undefined) {
-                  alert("Please log into your account");
-                } else {
-                  setUsername(res.username);
-                }
-              })
-              .then((e) => {
-                navigate(`/${usernameOnChange}`);
-              });
+      <form
+        className="Nav-login"
+        onSubmit={(e) => {
+          e.preventDefault();
+          getSingleUser(usernameOnChange)
+            .then((res) => {
+              console.log(res, "<<<<<<<<res");
+              // if (res.username===) {
+              //   alert("Username is invalid");
+              // } else {
+              //   setCurrentUser(res);
+              // }
+            })
+            .then((e) => {
+              if (usernameOnChange === undefined || usernameOnChange === "") {
+                alert("please log into your account");
+              } else {
+                navigate(`/users/${usernameOnChange}`);
+              }
+            })
+            .catch((err) => {
+              alert("User doesn't exist");
+            });
+        }}
+      >
+        <input
+          className="Nav-login"
+          placeholder="username"
+          type="text"
+          id="usernameLogin"
+          onChange={(e) => {
+            usernameOnChange = e.target.value;
           }}
-        >
-          <input
-            className="Nav-login"
-            placeholder="username"
-            type="text"
-            id="usernameLogin"
-            onChange={(e) => {
-              usernameOnChange = e.target.value;
-            }}
-          />
-          <input className="Nav-login" type="submit" value="Login" />
-        </form>
-      </Link>
+        />
+        {/* <Link to="/my_account" className="Nav-link"> */}
+        <input className="Nav-login" type="submit" value="Login" />
+        {/* </Link> */}
+      </form>
     </nav>
   );
 };

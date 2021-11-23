@@ -33,9 +33,17 @@ export const getSingleUser = (username) => {
   });
 };
 
-export const getAllArticles = () => {
-  return articlesApi.get("/").then((res) => {
-    return res.data.articles;
+export const getAllArticles = (sortBy, author) => {
+  return articlesApi.get("/", { params: { sort_by: sortBy } }).then((res) => {
+    const resArticles = res.data.articles;
+    if (author === undefined || author === "") {
+      return res.data.articles;
+    } else {
+      const filteredArticles = resArticles.filter(
+        (article) => article.author === author
+      );
+      return filteredArticles;
+    }
   });
 };
 
