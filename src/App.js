@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import { UserContext } from "./Contexts/UserContext";
+import { userContext } from "./Contexts/userContext";
 import Header from "./Components/Header";
 import Nav from "./Components/Nav";
 import Home from "./Components/Home";
@@ -18,7 +18,7 @@ function App() {
   const [username, setUsername] = useState("");
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{ username, setUsername }}>
+      <userContext.Provider value={{ username, setUsername }}>
         <div className="App">
           <Header />
           <Nav />
@@ -40,7 +40,7 @@ function App() {
             <Route path="/my_account" element={<PersonalPage />} />
           </Routes>
         </div>
-      </UserContext.Provider>
+      </userContext.Provider>
     </BrowserRouter>
   );
 }

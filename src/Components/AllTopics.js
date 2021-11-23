@@ -12,30 +12,26 @@ const Topics = () => {
   return (
     <main className="Topics">
       <h1>Topics</h1>
-      {topics.map((topic) => {
-        return (
-          <ul>
+      <ul>
+        {topics.map((topic) => {
+          return (
             <li key={`${topic.slug}`} className="topic_slug">
-              {topic.slug}
+              <p>{topic.slug}</p>
+              <p>{topic.description}</p>
+              <button
+                className="goto topic-related-articles"
+                // onClick={() => {
+                // 	updateKudos(user.avatar_url, user.username, 1).then(() => {
+                // 		setUsers(users);
+                // 	});
+                // }}
+              >
+                Related Articles
+              </button>
             </li>
-            <li key={`${topic.slug}_description`} className="topic_description">
-              {topic.description}
-            </li>
-
-            <button
-              key={`${topic.slug}_articles`}
-              className="topicRelatedArticles"
-              // onClick={() => {
-              // 	updateKudos(user.avatar_url, user.username, 1).then(() => {
-              // 		setUsers(users);
-              // 	});
-              // }}
-            >
-              Related Articles
-            </button>
-          </ul>
-        );
-      })}
+          );
+        })}
+      </ul>
     </main>
   );
 };

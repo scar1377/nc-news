@@ -9,46 +9,63 @@ const Articles = () => {
     });
   }, []);
   return (
-    <main className="Articles">
-      <h1>Articles</h1>
-      {articles.map((article) => {
-        return (
-          <ul>
-            <li key={`${article.article_id}_author`} className="article_author">
-              {article.author}
+    <main key="articles-main" className="Articles">
+      <h1 key="articles-h1">Articles</h1>
+      <ul>
+        {articles.map((article) => {
+          return (
+            <li key={article.article_id} className="article_author">
+              <Link
+                to={`/articles/${article.article_id}`}
+                className="go-to article-page"
+              >
+                <p key={`${article.article_id}_author`}>{article.author}</p>
+                <p
+                  key={`${article.article_id}_title`}
+                  className="article-title"
+                >
+                  {article.title}
+                </p>
+                <p
+                  key={`${article.article_id}_votes`}
+                  className="votes article-votes"
+                >
+                  {article.votes}
+                </p>
+                <p
+                  key={`${article.article_id}_created_at`}
+                  className="article-created-at"
+                >
+                  {article.created_at}
+                </p>
+              </Link>
+
+              <button
+                key={`${article.article_id}_vote_up_button`}
+                className="article-vote-button"
+                // onClick={() => {
+                // 	updateKudos(user.avatar_url, user.username, 1).then(() => {
+                // 		setUsers(users);
+                // 	});
+                // }}
+              >
+                Vote +1
+              </button>
+              <button
+                key={`${article.article_id}_vote_down_button`}
+                className="article-vote-button"
+                // onClick={() => {
+                // 	updateKudos(user.avatar_url, user.username, 1).then(() => {
+                // 		setUsers(users);
+                // 	});
+                // }}
+              >
+                Vote -1
+              </button>
             </li>
-            <li key={`${article.article_id}_title`} className="article_title">
-              {article.title}
-            </li>
-            <li key={`${article.article_id}_votes`} className="article_votes">
-              {article.votes}
-            </li>
-            <li key={`${article.article_id}_created_at`} className="created_at">
-              {article.created_at}
-            </li>
-            <button
-              key={`${article.article_id}_kudo_up_button`}
-              // onClick={() => {
-              // 	updateKudos(user.avatar_url, user.username, 1).then(() => {
-              // 		setUsers(users);
-              // 	});
-              // }}
-            >
-              Vote +1
-            </button>
-            <button
-              key={`${article.article_id}_kudo_down_button`}
-              // onClick={() => {
-              // 	updateKudos(user.avatar_url, user.username, 1).then(() => {
-              // 		setUsers(users);
-              // 	});
-              // }}
-            >
-              Vote -1
-            </button>
-          </ul>
-        );
-      })}
+          );
+        })}
+      </ul>
     </main>
   );
 };

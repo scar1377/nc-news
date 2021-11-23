@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { UserContext } from "../Contexts/UserContext";
+import { userContext } from "../Contexts/userContext";
 import { useContext } from "react";
 import { getSingleUser } from "../utils/api";
 import { useNavigate } from "react-router";
 const Nav = () => {
   const navigate = useNavigate();
-  const { setUsername } = useContext(UserContext);
+  const { setUsername } = useContext(userContext);
   let usernameOnChange = "";
   // let personalInfo = "";
   // if (user.name) {
@@ -40,15 +40,16 @@ const Nav = () => {
               });
           }}
         >
-          <label htmlFor="usernameLogin">Username: </label>
           <input
+            className="Nav-login"
+            placeholder="username"
             type="text"
             id="usernameLogin"
             onChange={(e) => {
               usernameOnChange = e.target.value;
             }}
           />
-          <input type="submit" value="Login" />
+          <input className="Nav-login" type="submit" value="Login" />
         </form>
       </Link>
     </nav>

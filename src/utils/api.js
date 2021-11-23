@@ -36,7 +36,13 @@ export const getAllArticles = () => {
 
 export const getSingleArticle = (article_id) => {
   return articlesApi.get(`/${article_id}`).then((res) => {
-    console.log(res.data.article);
     return res.data.article;
+  });
+};
+
+export const getCommentsByArticle = (article_id) => {
+  return articlesApi.get(`/${article_id}/comments`).then((res) => {
+    console.log(res.data.comments);
+    return res.data.comments;
   });
 };
