@@ -1,6 +1,6 @@
-import useCount from "../Hooks.js/useCount";
+import useCount from "../Hooks/useCount";
 import { updateArticleVotes } from "../utils/api";
-const Voter = ({ article_id, votes }) => {
+const ArticleVoter = ({ article_id, votes }) => {
   const { count, incCount, deCount } = useCount();
   return (
     <section className="Voter">
@@ -29,4 +29,4 @@ const Voter = ({ article_id, votes }) => {
   );
 };
 
-export default Voter;
+export default ArticleVoter;

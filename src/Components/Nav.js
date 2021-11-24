@@ -19,16 +19,13 @@ const Nav = () => {
   // }
   useEffect(() => {
     setIsLoggedIn(false);
-    console.log(thisUsername, "<<<<<<<<thisUsername");
     getSingleUser(thisUsername).then((userFromApi) => {
       if (thisUsername === undefined || thisUsername === "") {
         setIsLoggedIn(false);
       } else {
-        console.log(userFromApi, "<<<<<<<<<<<<<<<<<userFromApi");
         setUser(userFromApi);
         setCurrentUser(userFromApi);
         setIsLoggedIn(true);
-        console.log(user, "<<<<<<currentUser");
       }
     });
     // .catch((err) => {

@@ -5,7 +5,8 @@ import {
   getCommentsByArticle,
   updateCommentVotes,
 } from "../utils/api";
-import useCount from "../Hooks.js/useCount";
+import useCount from "../Hooks/useCount";
+import CommentVoter from "./CommentVoter";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
@@ -52,28 +53,7 @@ const SingleArticle = () => {
               >
                 {comment.votes}
               </p>
-
-              <button
-                key={`${comment.comment_id}_vote_up_button`}
-                className="comment-vote-button"
-                onClick={() => {
-                  incCount();
-                  updateCommentVotes(comment.comment_id, 1);
-                }}
-              >
-                👍
-              </button>
-              <button
-                key={`${comment.comment_id}_vote_down_button`}
-                className="comment-vote-button"
-                onClick={() => {
-                  deCount();
-                  updateCommentVotes(comment.comment_id, 11);
-                }}
-              >
-                👎
-              </button>
-              <span>{comment.votes + count}</span>
+              <CommentVoter />
             </li>
           );
         })}
