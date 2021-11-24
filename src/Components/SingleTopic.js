@@ -23,46 +23,48 @@ const SingleTopic = () => {
   }, []);
   return (
     <main className="SingleTopic">
+      <h1>{singleTopic.slug} Related Articles</h1>
       <p>{singleTopic.slug}</p>
       <p>{singleTopic.description}</p>
-      <h1>Related Articles</h1>
-      <ul className="articles-by-topic">
+      <section className="article-card-section">
         {articles.map((article) => {
           return (
-            <li
-              key={`${article.article_id}_by_topic`}
-              className="article-by-topic"
-            >
-              <Link
-                to={`/articles/${article.article_id}`}
-                className="go-to article-page"
+            <ul className="article-card">
+              <li
+                key={`${article.article_id}_by_topic`}
+                className="article-by-topic"
               >
-                <p key={`${article.article_id}_author_by_topic`}>
-                  {article.author}
-                </p>
-                <p
-                  key={`${article.article_id}_title_by_topic`}
-                  className="article-title"
+                <Link
+                  to={`/articles/${article.article_id}`}
+                  className="go-to article-page"
                 >
-                  {article.title}
-                </p>
-                <p
-                  key={`${article.article_id}_votes_by_topic`}
-                  className="votes article-votes"
-                >
-                  {article.votes}
-                </p>
-                <p
-                  key={`${article.article_id}_created_at_by_topic`}
-                  className="article-created-at"
-                >
-                  {article.created_at}
-                </p>
-              </Link>
-            </li>
+                  <p key={`${article.article_id}_author_by_topic`}>
+                    {article.author}
+                  </p>
+                  <p
+                    key={`${article.article_id}_title_by_topic`}
+                    className="article-title"
+                  >
+                    {article.title}
+                  </p>
+                  <p
+                    key={`${article.article_id}_votes_by_topic`}
+                    className="votes article-votes"
+                  >
+                    {article.votes}
+                  </p>
+                  <p
+                    key={`${article.article_id}_created_at_by_topic`}
+                    className="article-created-at"
+                  >
+                    {article.created_at}
+                  </p>
+                </Link>
+              </li>
+            </ul>
           );
         })}
-      </ul>
+      </section>
     </main>
   );
 };

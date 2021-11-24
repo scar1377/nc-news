@@ -5,9 +5,9 @@
   grid-template-columns: 100%;
   grid-template-rows: min-content min-content auto;
   grid-template-areas:
-    "header"
-    "nav"
-    "main";
+    "header header"
+    "nav nav"
+    "main main";
 }
 
 .App-logo {
@@ -18,40 +18,112 @@
 .Header {
   border: 2px solid aqua;
   background-color: #282c34;
-  min-height: 10vh;
+  width: 100vw;
+  height: 15vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  position: fixed;
+  z-index: 1;
 }
 
 .Nav {
+  background-color: cadetblue;
+  width: 100vw;
+  height: 20px;
   border: 2px solid plum;
+  margin-top: 15vh;
   padding: 5px;
+  position: fixed;
+  z-index: 1;
 }
 
 .Articles {
+  grid-area: main;
   border: 2px solid greenyellow;
 }
+/* .article-search-bar {
+  display: flex;
+  flex-direction: row;
+} */
+.search-form {
+  display: inline-block;
+  margin-right: 30px;
+  position: relative;
+  left: 200px;
+}
+.sort-by {
+  position: absolute;
+  right: 20px;
+}
 
+.article-card-section {
+  border: 2px solid orchid;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.article-card {
+  width: 40vw;
+}
+
+.topic-card {
+  width: 40vw;
+  padding: 10px;
+  margin: 20px auto;
+}
 .Header-link {
   color: whitesmoke;
+}
+.Nav-link-section {
+  margin-left: 30px;
+  position: fixed;
+  left: 40px;
 }
 .Nav-link {
   color: #083a13;
   padding: 5px 10px;
-  position: relative;
-  left: 20px;
+  margin-right: 30px;
 }
+.Nav-link:hover {
+  color: orangered;
+}
+
 .Nav-login {
   display: inline-block;
   position: fixed;
   right: 20px;
 }
+.Nav-login-info {
+  /* display: inline-block; */
+  position: fixed;
+  right: 20px;
+}
 
-.user-container {
+.Nav-login-img {
+  top: 0px;
+  right: 30px;
+  position: relative;
+  margin: 0px;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  object-fit: cover;
+  border: 2px solid green;
+  padding: 2px;
+  border-radius: 50%;
+  opacity: 1;
+  display: block;
+  /* width: 100%;
+  height: auto; */
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+
+.login-info .user-container {
   position: relative;
   width: 50%;
 }
@@ -72,6 +144,11 @@
   height: auto; */
   transition: 0.5s ease;
   backface-visibility: hidden;
+}
+
+.single-user-avatar {
+  width: 150px;
+  height: auto;
 }
 
 .middle {
@@ -102,8 +179,16 @@
   color: orangered;
 }
 
+.is-loading-img {
+  width: 150px;
+  height: auto;
+}
+
 li {
   border: 2px solid brown;
   list-style: none;
   margin: 5px auto;
+}
+main {
+  padding-top: 20vh;
 }

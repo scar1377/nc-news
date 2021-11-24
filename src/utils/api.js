@@ -9,6 +9,9 @@ const usersApi = axios.create({
 const articlesApi = axios.create({
   baseURL: "https://szanews.herokuapp.com/api/articles",
 });
+const commentsApi = axios.create({
+  baseURL: "https://szanews.herokuapp.com/api/comments",
+});
 
 export const getAllTopics = () => {
   return topicsApi.get("/").then((res) => {
@@ -56,5 +59,19 @@ export const getSingleArticle = (article_id) => {
 export const getCommentsByArticle = (article_id) => {
   return articlesApi.get(`/${article_id}/comments`).then((res) => {
     return res.data.comments;
+  });
+};
+
+export const updateArticleVotes = (article_id, vote) => {
+  const body = { inc_votes: vote };
+  return articlesApi.patch(`/${article_id}`, body).then((res) => {
+    return res.data.article;
+  });
+};
+
+export const updateCommentVotes = (comment_id, vote) => {
+  const body = { inc_votes: vote };
+  return commentsApi.patch(`/${comment_id}`, body).then((res) => {
+    return res.data.comment;
   });
 };

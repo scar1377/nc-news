@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getSingleArticle, getCommentsByArticle } from "../utils/api";
+import {
+  getSingleArticle,
+  getCommentsByArticle,
+  updateCommentVotes,
+} from "../utils/api";
+import useCount from "../Hooks.js/useCount";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
   const [singleArticle, setSingleArticle] = useState([]);
   const [comments, setComments] = useState([]);
+  const { count, setCount, incCount, deCount } = useCount();
+  let vote = 0;
 
   useEffect(() => {
     getSingleArticle(article_id).then((articleFromApi) => {
@@ -49,25 +56,24 @@ const SingleArticle = () => {
               <button
                 key={`${comment.comment_id}_vote_up_button`}
                 className="comment-vote-button"
-                // onClick={() => {
-                // 	updateKudos(user.avatar_url, user.username, 1).then(() => {
-                // 		setUsers(users);
-                // 	});
-                // }}
+                onClick={() => {
+                  incCount();
+                  updateCommentVotes(comment.comment_id, 1);
+                }}
               >
-                Vote +1
+                👍
               </button>
               <button
                 key={`${comment.comment_id}_vote_down_button`}
                 className="comment-vote-button"
-                // onClick={() => {
-                // 	updateKudos(user.avatar_url, user.username, 1).then(() => {
-                // 		setUsers(users);
-                // 	});
-                // }}
+                onClick={() => {
+                  deCount();
+                  updateCommentVotes(comment.comment_id, 11);
+                }}
               >
-                Vote -1
+                👎
               </button>
+              <span>{comment.votes + count}</span>
             </li>
           );
         })}

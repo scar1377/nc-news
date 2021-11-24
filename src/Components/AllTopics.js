@@ -14,24 +14,26 @@ const Topics = () => {
   return (
     <main className="Topics">
       <h1>Topics</h1>
-      <ul>
+      <section className="topic-card-section">
         {topics.map((topic) => {
           return (
-            <li key={`${topic.slug}`} className="topic_slug">
-              <p>{topic.slug}</p>
-              <p>{topic.description}</p>
-              <button
-                className="goto topic-related-articles"
-                onClick={() => {
-                  navigate(`/topics/${topic.slug}`);
-                }}
-              >
-                Related Articles
-              </button>
-            </li>
+            <ul className="topic-card">
+              <li key={`${topic.slug}`} className="topic_slug">
+                <p>{topic.slug}</p>
+                <p>{topic.description}</p>
+                <button
+                  className="goto topic-related-articles"
+                  onClick={() => {
+                    navigate(`/topics/${topic.slug}`);
+                  }}
+                >
+                  Related Articles
+                </button>
+              </li>
+            </ul>
           );
         })}
-      </ul>
+      </section>
     </main>
   );
 };

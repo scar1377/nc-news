@@ -29,9 +29,12 @@ const SingleUser = () => {
 
   return (
     <main className="SingleUser">
-      <h1>SingleUser</h1>
-      <h2>{singleUser.name}</h2>
-      <img src={singleUser.avatar_url} alt={singleUser.name} />
+      <h1>{singleUser.name}</h1>
+      <img
+        className="single-user-avatar"
+        src={singleUser.avatar_url}
+        alt={singleUser.name}
+      />
       <section className="articles-by-user">
         <ul>
           {articles.map((article) => {

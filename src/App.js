@@ -16,10 +16,10 @@ import SingleUser from "./Components/SingleUser";
 import PersonalPage from "./Components/PersonalPage";
 
 function App() {
-  const [username, setUsername] = useState("");
+  const [currentUser, setCurrentUser] = useState("");
   return (
     <BrowserRouter>
-      <userContext.Provider value={{ username, setUsername }}>
+      <userContext.Provider value={{ currentUser, setCurrentUser }}>
         <div className="App">
           <Header />
           <Nav />
@@ -39,7 +39,7 @@ function App() {
             />
             <Route path="/users" element={<Users />} />
             <Route path="/users/:username" element={<SingleUser />} />
-            <Route path="/my_account" element={<PersonalPage />} />
+            <Route path="/my_page" element={<PersonalPage />} />
           </Routes>
         </div>
       </userContext.Provider>
