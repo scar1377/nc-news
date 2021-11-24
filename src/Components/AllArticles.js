@@ -49,12 +49,12 @@ const Articles = () => {
                   >
                     {article.title}
                   </p>
-                  <p
+                  {/* <p
                     key={`${article.article_id}_votes`}
                     className="votes article-votes"
                   >
                     {article.votes}
-                  </p>
+                  </p> */}
                   <p
                     key={`${article.article_id}_created_at`}
                     className="article-created-at"

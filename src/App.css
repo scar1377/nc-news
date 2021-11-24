@@ -60,13 +60,17 @@
   right: 20px;
 }
 
-.article-card-section {
+.article-card-section,
+.comments-by-article,
+.articles-by-user {
   border: 2px solid orchid;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  justify-content: space-around;
 }
-.article-card {
+.article-card,
+.comment-card {
   width: 40vw;
 }
 

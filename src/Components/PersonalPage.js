@@ -7,7 +7,7 @@ const PersonalPage = () => {
   return (
     <main className="PersonalPage">
       <h1>Hello {currentUser.name}</h1>
-      <SingleUser />
+      <SingleUser currentUsername={currentUser.username} />
     </main>
   );
 };

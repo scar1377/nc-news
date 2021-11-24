@@ -20,7 +20,7 @@ const SingleTopic = () => {
       );
       setArticles(articlesByTopic);
     });
-  }, []);
+  }, [slug]);
   return (
     <main className="SingleTopic">
       <h1>{singleTopic.slug} Related Articles</h1>

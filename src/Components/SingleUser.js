@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
-import { useContext } from "react";
-import { userContext } from "../Contexts/userContext";
 import { useParams } from "react-router-dom";
 import { getAllArticles, getSingleUser } from "../utils/api";
 import { Link } from "react-router-dom";
-import Articles from "./AllArticles";
 
 const SingleUser = () => {
-  // const { username } = useContext(userContext);
   const { username } = useParams();
   const [singleUser, setSingleUser] = useState([]);
   const [articles, setArticles] = useState([]);
@@ -25,7 +21,7 @@ const SingleUser = () => {
       );
       setArticles(articlesByUser);
     });
-  }, []);
+  }, [username]);
 
   return (
     <main className="SingleUser">
@@ -36,9 +32,12 @@ const SingleUser = () => {
         alt={singleUser.name}
       />
       <section className="articles-by-user">
-        <ul>
-          {articles.map((article) => {
-            return (
+        {articles.map((article) => {
+          return (
+            <ul
+              key={`${article.article_id}_by_user_ul`}
+              className="article-card"
+            >
               <li
                 key={`${article.article_id}_by_user`}
                 className="article-by-user"
@@ -70,9 +69,9 @@ const SingleUser = () => {
                   </p>
                 </Link>
               </li>
-            );
-          })}
-        </ul>
+            </ul>
+          );
+        })}
       </section>
     </main>
   );

@@ -1,25 +1,36 @@
 import { getAllUsers } from "../utils/api";
 import { useEffect, useState } from "react";
-import { useContext } from "react";
-import { userContext } from "../Contexts/userContext";
-import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-const Users = () => {
-  const { username, setUsername } = useContext(userContext);
-  const [users, setUsers] = useState([]);
-  const navigate = useNavigate();
 
+const Users = () => {
+  const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
+    setIsLoading(true);
     getAllUsers().then((usersFromApi) => {
       setUsers(usersFromApi);
+      setIsLoading(false);
     });
   }, []);
+  if (isLoading === true) {
+    return (
+      <main className="Users">
+        <h1>Users</h1>
+        <img
+          className="is-loading-img"
+          src="https://hackernoon.com/images/0*4Gzjgh9Y7Gu8KEtZ.gif"
+          alt="Loading"
+        />
+        <h2 className="is-loading">On the way...</h2>
+      </main>
+    );
+  }
   return (
     <main className="Users">
       <h1>Users</h1>
-      <ul>
-        {users.map((user) => {
-          return (
+      {users.map((user) => {
+        return (
+          <ul key={`${user.username}ul`}>
             <li key={`${user.username}`} className="user-container">
               <Link to={`/users/${user.username}`} className="go-to user-page">
                 <p>
@@ -34,9 +45,9 @@ const Users = () => {
                 {/* <div className="middle">Go to their page</div> */}
               </Link>
             </li>
-          );
-        })}
-      </ul>
+          </ul>
+        );
+      })}
     </main>
   );
 };
