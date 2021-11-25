@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getSingleArticle, getCommentsByArticle } from "../utils/api";
-import { Link } from "react-router-dom";
-import CommentVoter from "./CommentVoter";
+import CommentVoter from "./CommentsComponents/CommentVoter";
+import SingleArticleSection from "./ArticlesComponents/SingleArticleSection";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
@@ -21,16 +21,7 @@ const SingleArticle = () => {
   }, [article_id]);
   return (
     <main className="SingleArticle">
-      <h1>{singleArticle.title}</h1>
-      <span>{singleArticle.created_at}</span>
-      <span>{singleArticle.comment_count}</span>
-      <Link to={`/users/${singleArticle.author}`}>
-        <p>{singleArticle.author}</p>
-      </Link>
-      <Link to={`/topics/${singleArticle.topic}`}>
-        <p>{singleArticle.topic}</p>
-      </Link>
-      <p>{singleArticle.body}</p>
+      <SingleArticleSection singleArticle={singleArticle} />
       <section className="comments-by-article">
         {comments.map((comment) => {
           return (

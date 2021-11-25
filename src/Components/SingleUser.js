@@ -3,16 +3,22 @@ import { useParams } from "react-router-dom";
 import { getAllArticles, getSingleUser } from "../utils/api";
 import { Link } from "react-router-dom";
 
-const SingleUser = () => {
+const SingleUser = (currentUser) => {
   const { username } = useParams();
   const [singleUser, setSingleUser] = useState([]);
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    getSingleUser(username).then((userFromApi) => {
-      setSingleUser(userFromApi);
-    });
-  }, [username]);
+    if (currentUser) {
+      return getSingleUser(currentUser.username).then((userFromApi) => {
+        setSingleUser(userFromApi);
+      });
+    } else {
+      getSingleUser(username).then((userFromApi) => {
+        setSingleUser(userFromApi);
+      });
+    }
+  }, [username, currentUser.username]);
 
   useEffect(() => {
     getAllArticles().then((articlesFromApi) => {

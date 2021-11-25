@@ -1,5 +1,5 @@
-import useCount from "../Hooks/useCount";
-import { updateArticleVotes } from "../utils/api";
+import useCount from "../../Hooks/useCount";
+import { updateArticleVotes } from "../../utils/api";
 const ArticleVoter = ({ article_id, votes }) => {
   const { count, incCount, deCount } = useCount();
   return (

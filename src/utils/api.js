@@ -75,3 +75,16 @@ export const updateCommentVotes = (comment_id, vote) => {
     return res.data.comment;
   });
 };
+
+export const postCommentByArticle = (article_id, author, comment) => {
+  //const newComment = { username: author, body: comment };
+  console.log(article_id, author, comment);
+  return articlesApi
+    .post(`/${article_id}/comments`, {
+      username: author,
+      body: comment,
+    })
+    .then((res) => {
+      return res.data.comment;
+    });
+};

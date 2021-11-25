@@ -1,8 +1,8 @@
 import { getAllArticles } from "../utils/api";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import ArticleVoter from "./ArticleVoter";
-import ArticleHeader from "./ArticleHeader";
+import ArticleVoter from "./ArticlesComponents/ArticleVoter";
+import ArticleHeader from "./ArticlesComponents/ArticleHeader";
 const Articles = () => {
   const [articles, setArticles] = useState([]);
   const [sortBy, setSortBy] = useState();
