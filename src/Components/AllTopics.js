@@ -6,9 +6,13 @@ const Topics = () => {
   const navigate = useNavigate();
   const [topics, setTopics] = useState([]);
   useEffect(() => {
-    getAllTopics().then((topicsFromApi) => {
-      setTopics(topicsFromApi);
-    });
+    getAllTopics()
+      .then((topicsFromApi) => {
+        setTopics(topicsFromApi);
+      })
+      .catch((err) => {
+        console.log(err, "<<<<<<<<err in AllTopics >>>>>> getTopics");
+      });
   }, []);
   return (
     <main className="Topics">
@@ -16,7 +20,7 @@ const Topics = () => {
       <section className="topic-card-section">
         {topics.map((topic) => {
           return (
-            <ul className="topic-card">
+            <ul key={`${topic.slug}ul`} className="topic-card">
               <li key={`${topic.slug}`} className="topic_slug">
                 <p>{topic.slug}</p>
                 <p>{topic.description}</p>

@@ -11,10 +11,14 @@ const Articles = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getAllArticles(sortBy, author).then((articlesFromApi) => {
-      setArticles(articlesFromApi);
-      setIsLoading(false);
-    });
+    getAllArticles(sortBy, author)
+      .then((articlesFromApi) => {
+        setArticles(articlesFromApi);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err, "<<<<<<<<err in AllArticles, getAllArticles");
+      });
   }, [sortBy, author]);
   if (isLoading === true) {
     return (
@@ -42,19 +46,13 @@ const Articles = () => {
                   to={`/articles/${article.article_id}`}
                   className="go-to article-page"
                 >
-                  <p key={`${article.article_id}_author`}>{article.author}</p>
-                  <p
+                  <h2
                     key={`${article.article_id}_title`}
                     className="article-title"
                   >
                     {article.title}
-                  </p>
-                  {/* <p
-                    key={`${article.article_id}_votes`}
-                    className="votes article-votes"
-                  >
-                    {article.votes}
-                  </p> */}
+                  </h2>
+                  <p key={`${article.article_id}_author`}>{article.author}</p>
                   <p
                     key={`${article.article_id}_created_at`}
                     className="article-created-at"

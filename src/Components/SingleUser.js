@@ -7,26 +7,50 @@ const SingleUser = (currentUser) => {
   const { username } = useParams();
   const [singleUser, setSingleUser] = useState([]);
   const [articles, setArticles] = useState([]);
+  const [err, setErr] = useState(null);
 
   useEffect(() => {
     if (currentUser) {
-      return getSingleUser(currentUser.username).then((userFromApi) => {
-        setSingleUser(userFromApi);
-      });
+      return getSingleUser(currentUser.username)
+        .then((userFromApi) => {
+          setSingleUser(userFromApi);
+        })
+        .catch((err) => {
+          if (err.response.status === 404) {
+            setErr("User does not exist...");
+          } else {
+            setErr("Something has gone wrong...");
+          }
+        });
     } else {
-      getSingleUser(username).then((userFromApi) => {
-        setSingleUser(userFromApi);
-      });
+      getSingleUser(username)
+        .then((userFromApi) => {
+          setSingleUser(userFromApi);
+        })
+        .catch((err) => {
+          if (err.response.status === 404) {
+            setErr("User does not exist...");
+          } else {
+            setErr("Something has gone wrong...");
+          }
+        });
     }
-  }, [username, currentUser.username]);
+  }, [username, currentUser]);
 
   useEffect(() => {
-    getAllArticles().then((articlesFromApi) => {
-      const articlesByUser = articlesFromApi.filter(
-        (article) => article.author === username
-      );
-      setArticles(articlesByUser);
-    });
+    getAllArticles()
+      .then((articlesFromApi) => {
+        const articlesByUser = articlesFromApi.filter(
+          (article) => article.author === username
+        );
+        setArticles(articlesByUser);
+      })
+      .catch((err) => {
+        console.log(
+          err,
+          "<<<<<<<<<<<<<err in SingleUser>>>>>>>>>getAllArticles"
+        );
+      });
   }, [username]);
 
   return (

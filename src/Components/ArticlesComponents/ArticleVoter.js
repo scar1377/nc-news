@@ -9,7 +9,12 @@ const ArticleVoter = ({ article_id, votes }) => {
         className="article-vote-button"
         onClick={() => {
           incCount();
-          updateArticleVotes(article_id, 1);
+          updateArticleVotes(article_id, 1).catch((err) => {
+            console.log(
+              err,
+              "<<<<<<<<err in ArticleVoter >>>>>>updateArticleVotes"
+            );
+          });
         }}
       >
         👍
@@ -19,7 +24,12 @@ const ArticleVoter = ({ article_id, votes }) => {
         className="article-vote-button"
         onClick={() => {
           deCount();
-          updateArticleVotes(article_id, -1);
+          updateArticleVotes(article_id, -1).catch((err) => {
+            console.log(
+              err,
+              "<<<<<<<<err in ArticleVoter >>>>>>updateArticleVotes"
+            );
+          });
         }}
       >
         👎

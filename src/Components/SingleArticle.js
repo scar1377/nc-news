@@ -1,59 +1,48 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getSingleArticle, getCommentsByArticle } from "../utils/api";
-import CommentVoter from "./CommentsComponents/CommentVoter";
 import SingleArticleSection from "./ArticlesComponents/SingleArticleSection";
+import CommentsInArticle from "./ArticlesComponents/CommentsInArticle";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
   const [singleArticle, setSingleArticle] = useState([]);
   const [comments, setComments] = useState([]);
+  const [posted, setPosted] = useState(false);
+  const [newComment, setNewComment] = useState();
 
   useEffect(() => {
-    getSingleArticle(article_id).then((articleFromApi) => {
-      setSingleArticle(articleFromApi);
-    });
+    getSingleArticle(article_id)
+      .then((articleFromApi) => {
+        setSingleArticle(articleFromApi);
+      })
+      .catch((err) => {
+        console.log(err, "<<<<<<<<err in SingleArticle, getSingleArticle");
+      });
   }, [article_id]);
   useEffect(() => {
-    getCommentsByArticle(article_id).then((commentsFromApi) => {
-      setComments(commentsFromApi);
-    });
-  }, [article_id]);
+    getCommentsByArticle(article_id)
+      .then((commentsFromApi) => {
+        setComments(commentsFromApi);
+      })
+      .catch((err) => {
+        console.log(err, "<<<<<<<<err in SingleArticle, getCommentsByArticle");
+      });
+  }, [article_id, posted]);
   return (
     <main className="SingleArticle">
-      <SingleArticleSection singleArticle={singleArticle} />
-      <section className="comments-by-article">
-        {comments.map((comment) => {
-          return (
-            <ul key={`${comment.comment_id}ul`} className="comment-card">
-              <li key={comment.comment_id} className="comment_author">
-                <span key={`${comment.comment_id}_author`}>
-                  {comment.author}
-                </span>
-                <span
-                  key={`${comment.comment_id}_created_at`}
-                  className="comment-created-at"
-                >
-                  {comment.created_at}
-                </span>
-                <p key={`${comment.comment_id}_body`} className="comment-body">
-                  {comment.body}
-                </p>
-                {/* <p
-                key={`${comment.comment_id}_votes`}
-                className="votes comment-votes"
-              >
-                {comment.votes}
-              </p> */}
-                <CommentVoter
-                  comment_id={comment.comment_id}
-                  votes={comment.votes}
-                />
-              </li>
-            </ul>
-          );
-        })}
-      </section>
+      <SingleArticleSection
+        singleArticle={singleArticle}
+        setPosted={setPosted}
+        newComment={newComment}
+        setNewComment={setNewComment}
+      />
+      <CommentsInArticle
+        comments={comments}
+        posted={posted}
+        setPosted={setPosted}
+        newComment={newComment}
+      />
     </main>
   );
 };

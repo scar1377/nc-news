@@ -9,17 +9,28 @@ import Articles from "./Components/AllArticles";
 import SingleArticle from "./Components/SingleArticle";
 import Topics from "./Components/AllTopics";
 import SingleTopic from "./Components/SingleTopic";
-import CommentsByArticle from "./Components/CommentsByArticle";
+import CommentsByArticle from "./Components/ArticlesComponents/CommentsInArticle";
 import SingleComment from "./Components/SingleComment";
 import Users from "./Components/AllUsers";
 import SingleUser from "./Components/SingleUser";
 import PersonalPage from "./Components/PersonalPage";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState("");
+  const [currentUser, setCurrentUser] = useState({});
+  const [currentUsername, setCurrentUsername] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <BrowserRouter>
-      <userContext.Provider value={{ currentUser, setCurrentUser }}>
+      <userContext.Provider
+        value={{
+          currentUser,
+          setCurrentUser,
+          currentUsername,
+          setCurrentUsername,
+          isLoggedIn,
+          setIsLoggedIn,
+        }}
+      >
         <div className="App">
           <Header />
           <Nav />
@@ -28,7 +39,7 @@ function App() {
             <Route path="/articles" element={<Articles />} />
             <Route path="/articles/:article_id" element={<SingleArticle />} />
             <Route path="/topics" element={<Topics />} />
-            <Route path="/topics/:slug" element={<SingleTopic />} />
+            <Route path="/topics/:topic" element={<SingleTopic />} />
             <Route
               path="/articles/:article_id/comments"
               element={<CommentsByArticle />}

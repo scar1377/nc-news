@@ -73,6 +73,10 @@
 .comment-card {
   width: 40vw;
 }
+.article-author,
+.comment-card {
+  padding: 20px;
+}
 
 .topic-card {
   width: 40vw;
@@ -186,6 +190,10 @@
 .is-loading-img {
   width: 150px;
   height: auto;
+}
+
+.article-title {
+  font-size: 20px;
 }
 
 li {

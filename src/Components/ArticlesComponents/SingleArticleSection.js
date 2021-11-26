@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react/cjs/react.development";
+import { useContext } from "react/cjs/react.development";
 import { userContext } from "../../Contexts/userContext";
 import { postCommentByArticle } from "../../utils/api";
-const SingleArticleSection = ({ singleArticle }) => {
-  const [newComment, setNewComment] = useState();
-  const { currentUser } = useContext(userContext);
+const SingleArticleSection = ({
+  singleArticle,
+  setPosted,
+  newComment,
+  setNewComment,
+}) => {
+  const { currentUser, isLoggedIn } = useContext(userContext);
   return (
     <div className="SingleArticleSection">
       <section className="single-article-section">
@@ -18,19 +22,25 @@ const SingleArticleSection = ({ singleArticle }) => {
           <p>{singleArticle.topic}</p>
         </Link>
         <p>{singleArticle.body}</p>
-        {currentUser ? (
+        {!!isLoggedIn ? (
           <form
             className="post-comment-form"
             onSubmit={(e) => {
               e.preventDefault();
+              setPosted(true);
               postCommentByArticle(
                 singleArticle.article_id,
                 currentUser.username,
                 newComment
-              );
+              ).catch((err) => {
+                console.log(
+                  err,
+                  "<<<<<<<<err in SingleArticleSection >>>>>>postCommentsByArticle"
+                );
+              });
             }}
           >
-            <label for="comment-box">Leave a comment</label>
+            <label htmlFor="comment-box">Leave a comment</label>
             <br></br>
             <textarea
               id="comment-box"
@@ -39,7 +49,6 @@ const SingleArticleSection = ({ singleArticle }) => {
               cols="50"
               placeholder="Less than 200 letters"
               onChange={(e) => {
-                console.log(e.target.value);
                 setNewComment(e.target.value);
               }}
             ></textarea>
@@ -47,11 +56,6 @@ const SingleArticleSection = ({ singleArticle }) => {
             <input type="submit" value="Submit" />
           </form>
         ) : (
-          //   <button className="post-comment-button" onClick={() => {
-          //     //   postCommentByArticle(singleArticle.article_id, currentUser.username, body);
-          //   }}>
-          //     Comment
-          //   </button>
           <></>
         )}
       </section>

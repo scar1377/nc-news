@@ -1,41 +1,52 @@
-import { Link } from "react-router-dom";
 import { userContext } from "../Contexts/userContext";
 import { useContext } from "react";
 import { useState } from "react";
 import { getSingleUser } from "../utils/api";
-import { useNavigate } from "react-router";
 import { useEffect } from "react/cjs/react.development";
 import NavLink from "./NavComponents/NavLink";
 import NavAfterLogin from "./NavComponents/NavAfterLogin";
 import NavBeforeLogin from "./NavComponents/NavBeforeLogin";
 
 const Nav = () => {
-  const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState();
-  const [thisUsername, setThisUsername] = useState();
-  const { setCurrentUser } = useContext(userContext);
+  const [err, setErr] = useState(null);
+  const { isLoggedIn, setIsLoggedIn, setCurrentUser, currentUsername } =
+    useContext(userContext);
 
   useEffect(() => {
     setIsLoggedIn(false);
-    getSingleUser(thisUsername).then((userFromApi) => {
-      if (thisUsername === undefined || thisUsername === "") {
+    getSingleUser(currentUsername)
+      .then((userFromApi) => {
+        if (currentUsername === undefined || currentUsername === "") {
+          setIsLoggedIn(false);
+        } else {
+          setCurrentUser(userFromApi);
+          setIsLoggedIn(true);
+        }
+      })
+      .catch((err) => {
         setIsLoggedIn(false);
-      } else {
-        setUser(userFromApi);
-        setCurrentUser(userFromApi);
-        setIsLoggedIn(true);
-      }
-    });
-  }, [thisUsername]);
+        setErr("error!");
+        console.dir(err);
+        if (err.response.status === 404) {
+          setErr("User does not exist. Please sign in again!");
+        } else {
+          setErr("Something has gone wrong...");
+        }
+      });
+  }, [currentUsername]);
 
   return (
     <nav className="Nav">
       <NavLink />
       {isLoggedIn ? (
-        <NavAfterLogin user={user} />
+        <NavAfterLogin />
+      ) : err ? (
+        <>
+          <span className="err-message">{err}</span>
+          <NavBeforeLogin setIsLoggedIn={setIsLoggedIn} />
+        </>
       ) : (
-        <NavBeforeLogin setThisUsername={setThisUsername} />
+        <NavBeforeLogin setIsLoggedIn={setIsLoggedIn} />
       )}
     </nav>
   );

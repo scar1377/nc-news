@@ -7,10 +7,14 @@ const Users = () => {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     setIsLoading(true);
-    getAllUsers().then((usersFromApi) => {
-      setUsers(usersFromApi);
-      setIsLoading(false);
-    });
+    getAllUsers()
+      .then((usersFromApi) => {
+        setUsers(usersFromApi);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err, "<<<<<<<<err in AllUsers >>>>>>getAllUsers");
+      });
   }, []);
   if (isLoading === true) {
     return (
@@ -42,7 +46,6 @@ const Users = () => {
                   />
                 </p>
                 <h2 className="user-name">{user.name}</h2>
-                {/* <div className="middle">Go to their page</div> */}
               </Link>
             </li>
           </ul>

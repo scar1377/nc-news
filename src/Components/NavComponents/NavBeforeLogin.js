@@ -1,15 +1,16 @@
-const NavBeforeLogin = ({ setThisUsername }) => {
-  let usernameOnChange = "";
+import { useContext } from "react/cjs/react.development";
+import { userContext } from "../../Contexts/userContext";
+
+const NavBeforeLogin = () => {
+  const { currentUsername, setCurrentUsername, setIsLoggedIn } =
+    useContext(userContext);
   return (
     <div className="NavBeforeLogin">
       <form
         className="Nav-login"
         onSubmit={(e) => {
           e.preventDefault();
-
-          if (usernameOnChange !== "" && usernameOnChange !== undefined) {
-            setThisUsername(usernameOnChange);
-          } else {
+          if (currentUsername === "" && currentUsername === undefined) {
             alert("Please log into your account");
           }
         }}
@@ -20,12 +21,10 @@ const NavBeforeLogin = ({ setThisUsername }) => {
           type="text"
           id="usernameLogin"
           onChange={(e) => {
-            usernameOnChange = e.target.value;
+            setCurrentUsername(e.target.value);
           }}
         />
-        {/* <Link to="/my_account" className="Nav-link"> */}
         <input className="Nav-login" type="submit" value="Login" />
-        {/* </Link> */}
       </form>
     </div>
   );

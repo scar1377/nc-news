@@ -4,22 +4,31 @@ import { getAllArticles, getSingleTopic } from "../utils/api";
 import { Link } from "react-router-dom";
 
 const SingleTopic = () => {
-  const { slug } = useParams();
+  const { topic: slug } = useParams();
   const [singleTopic, setSingleTopic] = useState([]);
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    getSingleTopic(slug).then((topicFromApi) => {
-      setSingleTopic(topicFromApi);
-    });
+    console.log(slug, "<<<<<slug");
+    getSingleTopic(slug)
+      .then((topicFromApi) => {
+        setSingleTopic(topicFromApi);
+      })
+      .catch((err) => {
+        console.dir(err, "<<<<<<<<err in SingleTopic >>>>>>getSingleTopic");
+      });
   }, [slug]);
   useEffect(() => {
-    getAllArticles().then((articlesFromApi) => {
-      const articlesByTopic = articlesFromApi.filter(
-        (article) => article.topic === slug
-      );
-      setArticles(articlesByTopic);
-    });
+    getAllArticles()
+      .then((articlesFromApi) => {
+        const articlesByTopic = articlesFromApi.filter(
+          (article) => article.topic === slug
+        );
+        setArticles(articlesByTopic);
+      })
+      .catch((err) => {
+        console.log(err, "<<<<<<<<err in SingleTopic >>>>>>getAllArticles");
+      });
   }, [slug]);
   return (
     <main className="SingleTopic">

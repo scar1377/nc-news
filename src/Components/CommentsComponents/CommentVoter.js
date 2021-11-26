@@ -9,7 +9,12 @@ const CommentVoter = ({ comment_id, votes }) => {
         className="comment-vote-button"
         onClick={() => {
           incCount();
-          updateCommentVotes(comment_id, 1);
+          updateCommentVotes(comment_id, 1).catch((err) => {
+            console.log(
+              err,
+              "<<<<<<<<err in CommentVoter >>>>>>updateCommentVotes"
+            );
+          });
         }}
       >
         👍
@@ -19,7 +24,12 @@ const CommentVoter = ({ comment_id, votes }) => {
         className="comment-vote-button"
         onClick={() => {
           deCount();
-          updateCommentVotes(comment_id, -1);
+          updateCommentVotes(comment_id, -1).catch((err) => {
+            console.log(
+              err,
+              "<<<<<<<<err in CommentVoter >>>>>>updateCommentVotes"
+            );
+          });
         }}
       >
         👎
