@@ -2,8 +2,7 @@ import { useContext } from "react/cjs/react.development";
 import { userContext } from "../../Contexts/userContext";
 
 const NavBeforeLogin = () => {
-  const { currentUsername, setCurrentUsername, setIsLoggedIn } =
-    useContext(userContext);
+  const { currentUsername, setCurrentUsername } = useContext(userContext);
   return (
     <div className="NavBeforeLogin">
       <form

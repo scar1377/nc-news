@@ -9,7 +9,6 @@ const SingleTopic = () => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    console.log(slug, "<<<<<slug");
     getSingleTopic(slug)
       .then((topicFromApi) => {
         setSingleTopic(topicFromApi);
@@ -38,7 +37,10 @@ const SingleTopic = () => {
       <section className="article-card-section">
         {articles.map((article) => {
           return (
-            <ul className="article-card">
+            <ul
+              key={`${article.article_id}_by_topic_ul`}
+              className="article-card"
+            >
               <li
                 key={`${article.article_id}_by_topic`}
                 className="article-by-topic"

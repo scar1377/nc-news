@@ -33,6 +33,7 @@ const SingleArticle = () => {
     <main className="SingleArticle">
       <SingleArticleSection
         singleArticle={singleArticle}
+        posted={posted}
         setPosted={setPosted}
         newComment={newComment}
         setNewComment={setNewComment}

@@ -9,20 +9,6 @@ const CommentsInArticle = ({ comments, posted, setPosted, newComment }) => {
   return (
     <div className="CommentsInArticle">
       <section className="comments-by-article">
-        {posted === true ? (
-          <div>
-            {setPosted(false)}
-            <ul className="comment-card">
-              <li className="comment_author">
-                <span>{currentUser.username}</span>
-                {/* <span className="comment-created-at">{currentUser.created_at}</span> */}
-                <p className="comment-body">{newComment}</p>
-                <CommentVoter comment_id={0} votes={0} />
-              </li>
-            </ul>
-            ;
-          </div>
-        ) : null}
         {comments.map((comment) => {
           return (
             <ul key={`${comment.comment_id}ul`} className="comment-card">
@@ -59,9 +45,7 @@ const CommentsInArticle = ({ comments, posted, setPosted, newComment }) => {
                   >
                     Delete
                   </button>
-                ) : (
-                  <></>
-                )}
+                ) : null}
               </li>
             </ul>
           );

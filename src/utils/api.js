@@ -24,7 +24,6 @@ export const getAllTopics = () => {
     });
 };
 export const getSingleTopic = (slug) => {
-  console.log(slug, "<<<<<<<<slug in api");
   return topicsApi
     .get(`/${slug}`)
     .then((res) => {

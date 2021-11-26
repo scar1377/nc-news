@@ -24,7 +24,7 @@ const PersonalPage = () => {
           >
             Log Out
           </button>
-          <SingleUser currentUser={currentUser} />
+          {/* <SingleUser currentUser={currentUser} /> */}
         </div>
       )}
     </main>
