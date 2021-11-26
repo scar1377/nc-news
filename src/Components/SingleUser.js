@@ -3,45 +3,33 @@ import { useParams } from "react-router-dom";
 import { getAllArticles, getSingleUser } from "../utils/api";
 import { Link } from "react-router-dom";
 
-const SingleUser = (currentUser) => {
+const SingleUser = ({ currentUser }) => {
   const { username } = useParams();
   const [singleUser, setSingleUser] = useState([]);
   const [articles, setArticles] = useState([]);
   const [err, setErr] = useState(null);
+  let thisUsername = username;
 
   useEffect(() => {
-    if (currentUser) {
-      return getSingleUser(currentUser.username)
-        .then((userFromApi) => {
-          setSingleUser(userFromApi);
-        })
-        .catch((err) => {
-          if (err.response.status === 404) {
-            setErr("User does not exist...");
-          } else {
-            setErr("Something has gone wrong...");
-          }
-        });
-    } else {
-      getSingleUser(username)
-        .then((userFromApi) => {
-          setSingleUser(userFromApi);
-        })
-        .catch((err) => {
-          if (err.response.status === 404) {
-            setErr("User does not exist...");
-          } else {
-            setErr("Something has gone wrong...");
-          }
-        });
-    }
-  }, [username, currentUser]);
+    if (currentUser) thisUsername = currentUser.username;
+    getSingleUser(thisUsername)
+      .then((userFromApi) => {
+        setSingleUser(userFromApi);
+      })
+      .catch((err) => {
+        if (err.response.status === 404) {
+          setErr("User does not exist...");
+        } else {
+          setErr("Something has gone wrong...");
+        }
+      });
+  }, [thisUsername, currentUser]);
 
   useEffect(() => {
     getAllArticles()
       .then((articlesFromApi) => {
         const articlesByUser = articlesFromApi.filter(
-          (article) => article.author === username
+          (article) => article.author === thisUsername
         );
         setArticles(articlesByUser);
       })
@@ -51,7 +39,7 @@ const SingleUser = (currentUser) => {
           "<<<<<<<<<<<<<err in SingleUser>>>>>>>>>getAllArticles"
         );
       });
-  }, [username]);
+  }, [thisUsername]);
 
   return (
     <main className="SingleUser">

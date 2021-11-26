@@ -31,25 +31,28 @@ const SingleTopic = () => {
   }, [slug]);
   return (
     <main className="SingleTopic">
-      <h1>{singleTopic.slug} Related Articles</h1>
-      <p>{singleTopic.slug}</p>
-      <p>{singleTopic.description}</p>
+      <h1 className="single-topic-title">{singleTopic.slug}</h1>
+      <h2 className="single-topic-description">{singleTopic.description}</h2>
       <section className="article-card-section">
         {articles.map((article) => {
           return (
-            <ul
-              key={`${article.article_id}_by_topic_ul`}
-              className="article-card"
+            <Link
+              key={`${article.article_id}_by_topic_link`}
+              to={`/articles/${article.article_id}`}
+              className="go-to article-page"
             >
-              <li
-                key={`${article.article_id}_by_topic`}
-                className="article-by-topic"
+              <ul
+                key={`${article.article_id}_by_topic_ul`}
+                className="article-card"
               >
-                <Link
-                  to={`/articles/${article.article_id}`}
-                  className="go-to article-page"
+                <li
+                  key={`${article.article_id}_by_topic`}
+                  className="article-by-topic"
                 >
-                  <p key={`${article.article_id}_author_by_topic`}>
+                  <p
+                    key={`${article.article_id}_author_by_topic`}
+                    className="article-card-author"
+                  >
                     {article.author}
                   </p>
                   <p
@@ -58,21 +61,37 @@ const SingleTopic = () => {
                   >
                     {article.title}
                   </p>
-                  <p
-                    key={`${article.article_id}_votes_by_topic`}
-                    className="votes article-votes"
+                  <fieldset
+                    key={`${article.article_id}_created_at_by_topic_fieldset`}
+                    className="inline-wrap"
                   >
-                    {article.votes}
-                  </p>
-                  <p
-                    key={`${article.article_id}_created_at_by_topic`}
-                    className="article-created-at"
-                  >
-                    {article.created_at}
-                  </p>
-                </Link>
-              </li>
-            </ul>
+                    <span
+                      key={`${article.article_id}_created_at_by_topic`}
+                      className="article-created-at"
+                    >
+                      {article.created_at}
+                    </span>
+                    <p
+                      key={`${article.article_id}_votes_by_topic_number`}
+                      className="comments-and-likes"
+                    >
+                      <span
+                        key={`${article.article_id}_votes_by_topic`}
+                        className="votes article-votes"
+                      >
+                        🤍 {article.votes}
+                      </span>
+                      <span
+                        key={`${article.article_id}_comment_counts_by_topic`}
+                        className="votes article-comments-count"
+                      >
+                        💬 {article.comment_counts}
+                      </span>
+                    </p>
+                  </fieldset>
+                </li>
+              </ul>
+            </Link>
           );
         })}
       </section>

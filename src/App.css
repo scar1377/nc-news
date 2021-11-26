@@ -69,19 +69,60 @@
   flex-direction: row;
   justify-content: space-around;
 }
+
+.article-by-topic {
+  padding: 20px;
+}
+
+.inline-wrap {
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  display: inline-block;
+  width: 100%;
+}
+
+.comments-and-likes {
+  text-align: right;
+  display: inline-flex;
+  justify-self: flex-end;
+}
+
+.article-created-at {
+  font-size: 12px;
+  display: inline-flex;
+  justify-self: flex-start;
+}
+
 .article-card,
 .comment-card {
   width: 40vw;
+  text-align: left;
 }
 .article-author,
 .comment-card {
   padding: 20px;
+}
+.article-page {
+  text-decoration: none;
 }
 
 .topic-card {
   width: 40vw;
   padding: 10px;
   margin: 20px auto;
+}
+.single-topic-title {
+  text-transform: capitalize;
+  font-size: 40px;
+  width: 40vh;
+  margin: 30px auto 20px auto;
+  color: rgb(66, 65, 65);
+}
+.single-topic-description {
+  text-align: center;
+  font-size: 20px;
+  color: gray;
 }
 .Header-link {
   color: whitesmoke;

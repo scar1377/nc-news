@@ -1,5 +1,7 @@
+import { useState } from "react";
+
 const ArticleHeader = ({ setAuthor, setSortBy }) => {
-  let authorOnChange = "";
+  const [authorOnChange, setAuthorOnChange] = useState();
   return (
     <div className="ArticleHeader">
       <h1 key="articles-h1">Articles</h1>
@@ -8,7 +10,7 @@ const ArticleHeader = ({ setAuthor, setSortBy }) => {
           className="search-form"
           onSubmit={(e) => {
             e.preventDefault();
-            // setAuthor(authorOnChange);
+            setAuthor(authorOnChange);
           }}
         >
           <input
@@ -16,8 +18,7 @@ const ArticleHeader = ({ setAuthor, setSortBy }) => {
             className="search-bar"
             placeholder="Please enter the author"
             onChange={(e) => {
-              // authorOnChange = e.target.value;
-              setAuthor(e.target.value);
+              setAuthorOnChange(e.target.value);
             }}
           />
           <input type="submit" value="Search" />
