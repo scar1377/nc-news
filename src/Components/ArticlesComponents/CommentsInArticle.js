@@ -3,7 +3,7 @@ import { userContext } from "../../Contexts/userContext";
 import { deleteSingleComment } from "../../utils/api";
 import CommentVoter from "../CommentsComponents/CommentVoter";
 
-const CommentsInArticle = ({ comments, posted, setPosted, newComment }) => {
+const CommentsInArticle = ({ comments, setComments }) => {
   const { currentUser, isLoggedIn } = useContext(userContext);
 
   return (
@@ -34,12 +34,24 @@ const CommentsInArticle = ({ comments, posted, setPosted, newComment }) => {
                     key={`${comment.comment_id}_deleteButton`}
                     className="comment-delete-button"
                     onClick={() => {
-                      deleteSingleComment(comment.comment_id).catch((err) => {
-                        console.log(
-                          err,
-                          "<<<<<<<<err in CommentsInArticle >>>>>>deleteSingleComment"
-                        );
-                      });
+                      // const deletedCommentId = comment.comment_id;
+                      deleteSingleComment(comment.comment_id)
+                        .then(() => {
+                          setComments((preComments) => {
+                            const newPreComments = [...preComments];
+                            const newComments = newPreComments.filter(
+                              (preComment) =>
+                                preComment.comment_id !== comment.comment_id
+                            );
+                            return newComments;
+                          });
+                        })
+                        .catch((err) => {
+                          console.log(
+                            err,
+                            "<<<<<<<<err in CommentsInArticle >>>>>>deleteSingleComment"
+                          );
+                        });
                       alert("The comment has been deleted!");
                     }}
                   >

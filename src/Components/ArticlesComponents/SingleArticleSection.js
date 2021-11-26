@@ -4,11 +4,12 @@ import { userContext } from "../../Contexts/userContext";
 import { postCommentByArticle } from "../../utils/api";
 const SingleArticleSection = ({
   singleArticle,
-  setPosted,
   newComment,
   setNewComment,
+  setComments,
 }) => {
   const { currentUser, isLoggedIn } = useContext(userContext);
+
   return (
     <div className="SingleArticleSection">
       <section className="single-article-section">
@@ -27,17 +28,23 @@ const SingleArticleSection = ({
             className="post-comment-form"
             onSubmit={(e) => {
               e.preventDefault();
-              setPosted(true);
               postCommentByArticle(
                 singleArticle.article_id,
                 currentUser.username,
                 newComment
-              ).catch((err) => {
-                console.log(
-                  err,
-                  "<<<<<<<<err in SingleArticleSection >>>>>>postCommentsByArticle"
-                );
-              });
+              )
+                .then((comment) => {
+                  setComments((preComments) => {
+                    const newPreComments = [comment, ...preComments];
+                    return newPreComments;
+                  });
+                })
+                .catch((err) => {
+                  console.log(
+                    err,
+                    "<<<<<<<<err in SingleArticleSection >>>>>>postCommentsByArticle"
+                  );
+                });
             }}
           >
             <label htmlFor="comment-box">Leave a comment</label>

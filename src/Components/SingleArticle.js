@@ -8,7 +8,6 @@ const SingleArticle = () => {
   const { article_id } = useParams();
   const [singleArticle, setSingleArticle] = useState([]);
   const [comments, setComments] = useState([]);
-  const [posted, setPosted] = useState(false);
   const [newComment, setNewComment] = useState();
 
   useEffect(() => {
@@ -28,22 +27,16 @@ const SingleArticle = () => {
       .catch((err) => {
         console.log(err, "<<<<<<<<err in SingleArticle, getCommentsByArticle");
       });
-  }, [article_id, posted]);
+  }, [article_id]);
   return (
     <main className="SingleArticle">
       <SingleArticleSection
         singleArticle={singleArticle}
-        posted={posted}
-        setPosted={setPosted}
         newComment={newComment}
         setNewComment={setNewComment}
+        setComments={setComments}
       />
-      <CommentsInArticle
-        comments={comments}
-        posted={posted}
-        setPosted={setPosted}
-        newComment={newComment}
-      />
+      <CommentsInArticle comments={comments} setComments={setComments} />
     </main>
   );
 };

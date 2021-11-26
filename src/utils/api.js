@@ -65,8 +65,8 @@ export const getAllArticles = (sortBy, author) => {
       if (author === undefined || author === "") {
         return res.data.articles;
       } else {
-        const filteredArticles = resArticles.filter(
-          (article) => article.author === author
+        const filteredArticles = resArticles.filter((article) =>
+          article.author.includes(author)
         );
         return filteredArticles;
       }

@@ -8,7 +8,7 @@ const ArticleHeader = ({ setAuthor, setSortBy }) => {
           className="search-form"
           onSubmit={(e) => {
             e.preventDefault();
-            setAuthor(authorOnChange);
+            // setAuthor(authorOnChange);
           }}
         >
           <input
@@ -16,7 +16,8 @@ const ArticleHeader = ({ setAuthor, setSortBy }) => {
             className="search-bar"
             placeholder="Please enter the author"
             onChange={(e) => {
-              authorOnChange = e.target.value;
+              // authorOnChange = e.target.value;
+              setAuthor(e.target.value);
             }}
           />
           <input type="submit" value="Search" />

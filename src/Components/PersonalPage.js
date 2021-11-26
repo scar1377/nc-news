@@ -8,7 +8,7 @@ const PersonalPage = () => {
   const navigate = useNavigate();
   return (
     <main className="PersonalPage">
-      {isLoggedIn === false || !currentUser ? (
+      {isLoggedIn === false && !currentUser ? (
         <div className="false">
           <h1>Hello! Please log in to your account!</h1>
         </div>
@@ -18,13 +18,13 @@ const PersonalPage = () => {
           <button
             onClick={() => {
               setIsLoggedIn(false);
-              navigate("./my_page");
+              navigate("/");
             }}
             className="log-out-button"
           >
             Log Out
           </button>
-          {/* <SingleUser currentUser={currentUser} /> */}
+          <SingleUser currentUser={currentUser} />
         </div>
       )}
     </main>
