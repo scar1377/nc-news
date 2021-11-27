@@ -1,13 +1,14 @@
 import { getAllArticles } from "../utils/api";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import ArticleVoter from "./ArticlesComponents/ArticleVoter";
 import ArticleHeader from "./ArticlesComponents/ArticleHeader";
+import ArticleCardsSection from "./ArticlesComponents/ArticleCardsSection";
 const Articles = () => {
   const [articles, setArticles] = useState([]);
   const [sortBy, setSortBy] = useState();
   const [author, setAuthor] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [err, setErr] = useState(null);
+  const isInAllArticle = true;
 
   useEffect(() => {
     setIsLoading(true);
@@ -37,38 +38,20 @@ const Articles = () => {
   return (
     <main key="articles-main" className="Articles">
       <ArticleHeader setAuthor={setAuthor} setSortBy={setSortBy} />
-      <section className="article-card-section">
-        {articles.map((article) => {
-          return (
-            <ul key={`${article.article_id}ul`} className="article-card">
-              <li key={article.article_id} className="article_author">
-                <Link
-                  to={`/articles/${article.article_id}`}
-                  className="go-to article-page"
-                >
-                  <h2
-                    key={`${article.article_id}_title`}
-                    className="article-title"
-                  >
-                    {article.title}
-                  </h2>
-                  <p key={`${article.article_id}_author`}>{article.author}</p>
-                  <p
-                    key={`${article.article_id}_created_at`}
-                    className="article-created-at"
-                  >
-                    {article.created_at}
-                  </p>
-                </Link>
-                <ArticleVoter
-                  article_id={article.article_id}
-                  votes={article.votes}
-                />
-              </li>
-            </ul>
-          );
-        })}
-      </section>
+      {!!err ? (
+        <div className="err">
+          <img
+            src="https://thumbs.gfycat.com/TiredEmbellishedLeopard-size_restricted.gif"
+            alt="Crying girl"
+          />
+          <p className="err-message">{err}</p>
+        </div>
+      ) : (
+        <ArticleCardsSection
+          articles={articles}
+          isInAllArticle={isInAllArticle}
+        />
+      )}
     </main>
   );
 };

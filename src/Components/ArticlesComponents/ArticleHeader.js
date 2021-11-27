@@ -13,8 +13,10 @@ const ArticleHeader = ({ setAuthor, setSortBy }) => {
             setAuthor(authorOnChange);
           }}
         >
+          <label htmlFor="search-bar"></label>
           <input
             type="text"
+            id="search-bar"
             className="search-bar"
             placeholder="Please enter the author"
             onChange={(e) => {

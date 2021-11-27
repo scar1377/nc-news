@@ -1,14 +1,14 @@
 import { userContext } from "../Contexts/userContext";
-import { useContext, isLoggedIn } from "react";
+import { useContext } from "react";
 import SingleUser from "./SingleUser";
 import { useNavigate } from "react-router";
 
 const PersonalPage = () => {
-  const { currentUser, setIsLoggedIn } = useContext(userContext);
+  const { currentUser, isLoggedIn, setIsLoggedIn } = useContext(userContext);
   const navigate = useNavigate();
   return (
     <main className="PersonalPage">
-      {isLoggedIn === false && !currentUser ? (
+      {!isLoggedIn && !currentUser ? (
         <div className="false">
           <h1>Hello! Please log in to your account!</h1>
         </div>

@@ -16,7 +16,7 @@ import SingleUser from "./Components/SingleUser";
 import PersonalPage from "./Components/PersonalPage";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState();
   const [currentUsername, setCurrentUsername] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (

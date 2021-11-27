@@ -55,14 +55,17 @@
   position: relative;
   left: 200px;
 }
+
 .sort-by {
   position: absolute;
   right: 20px;
 }
 
-.article-card-section,
-.comments-by-article,
-.articles-by-user {
+.article-cards,
+.comment-cards,
+.topic-cards,
+.article-card-section {
+  padding: 20px;
   border: 2px solid orchid;
   display: flex;
   flex-wrap: wrap;
@@ -70,13 +73,7 @@
   justify-content: space-around;
 }
 
-.article-by-topic {
-  padding: 20px;
-}
-
 .inline-wrap {
-  margin: 0px;
-  padding: 0px;
   border: none;
   display: inline-block;
   width: 100%;
@@ -94,24 +91,29 @@
   justify-self: flex-start;
 }
 
-.article-card,
-.comment-card {
-  width: 40vw;
-  text-align: left;
-}
-.article-author,
-.comment-card {
+.article-cards,
+.comment-cards,
+.topic-cards {
+  /* width: 40vw; */
+  text-align: center;
   padding: 20px;
 }
+
+.article-card,
+.topic-card {
+  width: 40vw;
+  padding: 20px;
+}
+
+.comment-card {
+  width: 80%;
+  padding: 20px;
+}
+
 .article-page {
   text-decoration: none;
 }
 
-.topic-card {
-  width: 40vw;
-  padding: 10px;
-  margin: 20px auto;
-}
 .single-topic-title {
   text-transform: capitalize;
   font-size: 40px;

@@ -18,10 +18,10 @@ const Topics = () => {
     <main className="Topics">
       <h1>Topics</h1>
       <section className="topic-card-section">
-        {topics.map((topic) => {
-          return (
-            <ul key={`${topic.slug}ul`} className="topic-card">
-              <li key={`${topic.slug}`} className="topic_slug">
+        <ul className="topic-cards">
+          {topics.map((topic) => {
+            return (
+              <li key={`${topic.slug}`} className="topic-card">
                 <p>{topic.slug}</p>
                 <p>{topic.description}</p>
                 <button
@@ -33,9 +33,9 @@ const Topics = () => {
                   Related Articles
                 </button>
               </li>
-            </ul>
-          );
-        })}
+            );
+          })}
+        </ul>
       </section>
     </main>
   );

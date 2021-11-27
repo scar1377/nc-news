@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getAllArticles, getSingleUser } from "../utils/api";
-import { Link } from "react-router-dom";
+import ArticleCardsSection from "./ArticlesComponents/ArticleCardsSection";
 
 const SingleUser = ({ currentUser }) => {
   const { username } = useParams();
   const [singleUser, setSingleUser] = useState([]);
   const [articles, setArticles] = useState([]);
+  const [thisUsername, setThisUsername] = useState(username);
   const [err, setErr] = useState(null);
-  let thisUsername = username;
 
+  //let thisUsername = username;
   useEffect(() => {
-    if (currentUser) thisUsername = currentUser.username;
+    if (!!currentUser) setThisUsername(currentUser.username);
     getSingleUser(thisUsername)
       .then((userFromApi) => {
         setSingleUser(userFromApi);
@@ -49,48 +50,7 @@ const SingleUser = ({ currentUser }) => {
         src={singleUser.avatar_url}
         alt={singleUser.name}
       />
-      <section className="articles-by-user">
-        {articles.map((article) => {
-          return (
-            <ul
-              key={`${article.article_id}_by_user_ul`}
-              className="article-card"
-            >
-              <li
-                key={`${article.article_id}_by_user`}
-                className="article-by-user"
-              >
-                <Link
-                  to={`/articles/${article.article_id}`}
-                  className="go-to article-page"
-                >
-                  <p key={`${article.article_id}_author_by_user`}>
-                    {article.author}
-                  </p>
-                  <p
-                    key={`${article.article_id}_title_by_user`}
-                    className="article-title"
-                  >
-                    {article.title}
-                  </p>
-                  <p
-                    key={`${article.article_id}_votes_by_user`}
-                    className="votes article-votes"
-                  >
-                    {article.votes}
-                  </p>
-                  <p
-                    key={`${article.article_id}_created_at_by_user`}
-                    className="article-created-at"
-                  >
-                    {article.created_at}
-                  </p>
-                </Link>
-              </li>
-            </ul>
-          );
-        })}
-      </section>
+      <ArticleCardsSection articles={articles} />
     </main>
   );
 };

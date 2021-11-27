@@ -41,10 +41,10 @@ const Nav = () => {
       {isLoggedIn ? (
         <NavAfterLogin />
       ) : err ? (
-        <>
+        <div className="err">
           <span className="err-message">{err}</span>
           <NavBeforeLogin setIsLoggedIn={setIsLoggedIn} />
-        </>
+        </div>
       ) : (
         <NavBeforeLogin setIsLoggedIn={setIsLoggedIn} />
       )}

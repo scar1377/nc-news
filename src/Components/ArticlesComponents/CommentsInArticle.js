@@ -1,6 +1,7 @@
 import { useContext } from "react/cjs/react.development";
 import { userContext } from "../../Contexts/userContext";
 import { deleteSingleComment } from "../../utils/api";
+import { convertDate } from "../../utils/utils";
 import CommentVoter from "../CommentsComponents/CommentVoter";
 
 const CommentsInArticle = ({ comments, setComments }) => {
@@ -9,10 +10,10 @@ const CommentsInArticle = ({ comments, setComments }) => {
   return (
     <div className="CommentsInArticle">
       <section className="comments-by-article">
-        {comments.map((comment) => {
-          return (
-            <ul key={`${comment.comment_id}ul`} className="comment-card">
-              <li key={comment.comment_id} className="comment_author">
+        <ul className="comment-cards">
+          {comments.map((comment) => {
+            return (
+              <li key={comment.comment_id} className="comment-card">
                 <span key={`${comment.comment_id}_author`}>
                   {comment.author}
                 </span>
@@ -20,7 +21,7 @@ const CommentsInArticle = ({ comments, setComments }) => {
                   key={`${comment.comment_id}_created_at`}
                   className="comment-created-at"
                 >
-                  {comment.created_at}
+                  {convertDate(comment.created_at)}
                 </span>
                 <p key={`${comment.comment_id}_body`} className="comment-body">
                   {comment.body}
@@ -29,7 +30,8 @@ const CommentsInArticle = ({ comments, setComments }) => {
                   comment_id={comment.comment_id}
                   votes={comment.votes}
                 />
-                {currentUser.username === comment.author && !!isLoggedIn ? (
+                {!isLoggedIn ? null : currentUser.username !==
+                  comment.author ? null : (
                   <button
                     key={`${comment.comment_id}_deleteButton`}
                     className="comment-delete-button"
@@ -57,11 +59,11 @@ const CommentsInArticle = ({ comments, setComments }) => {
                   >
                     Delete
                   </button>
-                ) : null}
+                )}
               </li>
-            </ul>
-          );
-        })}
+            );
+          })}
+        </ul>
       </section>
     </div>
   );
