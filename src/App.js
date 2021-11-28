@@ -4,6 +4,7 @@ import { useState } from "react";
 import { userContext } from "./Contexts/userContext";
 import Header from "./Components/Header";
 import Nav from "./Components/Nav";
+import HomePage from "./Components/HomePage";
 import Home from "./Components/Home";
 import Articles from "./Components/AllArticles";
 import SingleArticle from "./Components/SingleArticle";
@@ -33,7 +34,8 @@ function App() {
           <Header />
           <Nav />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/:home" element={<Home />} />
             <Route path="/articles" element={<Articles />} />
             <Route path="/articles/:article_id" element={<SingleArticle />} />
             <Route path="/topics" element={<Topics />} />

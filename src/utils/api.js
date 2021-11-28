@@ -1,8 +1,8 @@
 import axios from "axios";
 
-// const homeApi = axios.create({
-//   baseURL: "https://szanews.herokuapp.com/api",
-// });
+const homeApi = axios.create({
+  baseURL: "https://szanews.herokuapp.com/api",
+});
 const topicsApi = axios.create({
   baseURL: "https://szanews.herokuapp.com/api/topics",
 });
@@ -15,6 +15,18 @@ const articlesApi = axios.create({
 const commentsApi = axios.create({
   baseURL: "https://szanews.herokuapp.com/api/comments",
 });
+
+export const getToHomePage = (home) => {
+  const path = "/";
+  return homeApi
+    .get(`${path}${home}`)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
 
 export const getAllTopics = () => {
   return topicsApi
