@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { getSingleArticle, getCommentsByArticle } from "../utils/api";
 import SingleArticleSection from "./ArticlesComponents/SingleArticleSection";
 import CommentsInArticle from "./ArticlesComponents/CommentsInArticle";
-import ErrorSection from "./ErrorSecsion";
+import ErrorSection from "./ErrorSection";
 
 const SingleArticle = () => {
   const { article_id } = useParams();

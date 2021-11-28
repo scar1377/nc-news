@@ -13,7 +13,6 @@ const NavBeforeLogin = () => {
         defaultValue={"default"}
         onChange={(e) => {
           setCurrentUsername(e.target.value);
-          navigate("/my_page");
         }}
       >
         <option key="default_user" value="default" disabled>

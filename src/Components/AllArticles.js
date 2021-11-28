@@ -2,7 +2,7 @@ import { getAllArticles } from "../utils/api";
 import { useEffect, useState } from "react";
 import ArticleHeader from "./ArticlesComponents/ArticleHeader";
 import ArticleCardsSection from "./ArticlesComponents/ArticleCardsSection";
-import ErrorSection from "./ErrorSecsion";
+import ErrorSection from "./ErrorSection";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);

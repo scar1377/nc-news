@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getAllArticles, getSingleUser } from "../utils/api";
 import ArticleCardsSection from "./ArticlesComponents/ArticleCardsSection";
-import ErrorSection from "./ErrorSecsion";
+import ErrorSection from "./ErrorSection";
 
 const SingleUser = ({ currentUser }) => {
   const { username } = useParams();
