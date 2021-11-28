@@ -17,7 +17,7 @@
 
 .Header {
   border: 2px solid aqua;
-  background-color: #282c34;
+  background-color: #0f251e;
   width: 100vw;
   height: 15vh;
   display: flex;
@@ -251,6 +251,15 @@
 }
 .err-img {
   width: 150px;
+}
+
+.post-err-msg {
+  color: red;
+  font-size: 12px;
+}
+
+.error-message {
+  color: red;
 }
 
 .article-title {

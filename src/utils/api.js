@@ -135,7 +135,7 @@ export const postCommentByArticle = (article_id, author, comment) => {
       return res.data.comment;
     })
     .catch((err) => {
-      console.log(err, "<<<<<<<postCommentByArticle---api");
+      throw err;
     });
 };
 

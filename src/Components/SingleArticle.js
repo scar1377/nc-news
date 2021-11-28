@@ -9,7 +9,7 @@ const SingleArticle = () => {
   const { article_id } = useParams();
   const [singleArticle, setSingleArticle] = useState([]);
   const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState();
+  const [newComment, setNewComment] = useState(null);
   const [err, setErr] = useState(null);
 
   useEffect(() => {

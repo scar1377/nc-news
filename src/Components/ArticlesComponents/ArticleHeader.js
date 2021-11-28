@@ -20,6 +20,7 @@ const ArticleHeader = ({ setAuthor, setSortBy }) => {
             className="search-bar"
             placeholder="Please enter the author"
             onChange={(e) => {
+              e.preventDefault();
               setAuthorOnChange(e.target.value);
             }}
           />
