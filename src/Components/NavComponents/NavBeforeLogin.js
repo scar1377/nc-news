@@ -1,17 +1,15 @@
 import { useContext } from "react/cjs/react.development";
 import { userContext } from "../../Contexts/userContext";
-import { useNavigate } from "react-router";
-import { useState } from "react";
 
 const NavBeforeLogin = () => {
-  const { currentUsername, setCurrentUsername } = useContext(userContext);
-  const navigate = useNavigate();
+  const { setCurrentUsername } = useContext(userContext);
   return (
     <div className="NavBeforeLogin">
       <select
         className="Nav-login"
         defaultValue={"default"}
         onChange={(e) => {
+          e.preventDefault();
           setCurrentUsername(e.target.value);
         }}
       >

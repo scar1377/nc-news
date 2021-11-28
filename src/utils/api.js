@@ -23,7 +23,7 @@ export const getAllTopics = () => {
       return res.data.topics;
     })
     .catch((err) => {
-      console.log(err, "<<<<<<<getAllTopics---api");
+      throw err;
     });
 };
 

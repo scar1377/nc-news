@@ -99,6 +99,11 @@
   padding: 20px;
 }
 
+.single-article-section {
+  width: 80vw;
+  margin: 20px auto;
+}
+
 .article-card {
   width: 40vw;
   background-color: rgb(171, 236, 236);

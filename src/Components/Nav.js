@@ -33,7 +33,7 @@ const Nav = () => {
           setErr("Something has gone wrong...");
         }
       });
-  }, [currentUsername]);
+  }, [setIsLoggedIn, setCurrentUser, currentUsername]);
 
   return (
     <nav className="Nav">

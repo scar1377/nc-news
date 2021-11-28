@@ -10,8 +10,8 @@ const SingleUser = ({ currentUser }) => {
   const [articles, setArticles] = useState([]);
   const [err, setErr] = useState(null);
 
-  let thisUsername = username;
   useEffect(() => {
+    let thisUsername = username;
     if (!!currentUser) thisUsername = currentUser.username;
     getSingleUser(thisUsername)
       .then((userFromApi) => {
@@ -30,7 +30,7 @@ const SingleUser = ({ currentUser }) => {
           setErr("Something has gone wrong...");
         }
       });
-  }, [thisUsername, currentUser]);
+  }, [username, currentUser]);
 
   return (
     <main className="SingleUser">
