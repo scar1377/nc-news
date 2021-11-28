@@ -5,13 +5,15 @@ import { useNavigate } from "react-router";
 const Topics = () => {
   const navigate = useNavigate();
   const [topics, setTopics] = useState([]);
+  const [err, setErr] = useState([]);
+
   useEffect(() => {
     getAllTopics()
       .then((topicsFromApi) => {
         setTopics(topicsFromApi);
       })
       .catch((err) => {
-        console.log(err, "<<<<<<<<err in AllTopics >>>>>> getTopics");
+        setErr("Something has gone wrong...");
       });
   }, []);
   return (

@@ -1,5 +1,8 @@
 import axios from "axios";
 
+// const homeApi = axios.create({
+//   baseURL: "https://szanews.herokuapp.com/api",
+// });
 const topicsApi = axios.create({
   baseURL: "https://szanews.herokuapp.com/api/topics",
 });
@@ -23,14 +26,15 @@ export const getAllTopics = () => {
       console.log(err, "<<<<<<<getAllTopics---api");
     });
 };
-export const getSingleTopic = (slug) => {
-  return topicsApi
-    .get(`/${slug}`)
+
+export const getArticlesByTopic = (slug) => {
+  return articlesApi
+    .get(`?topic=${slug}`)
     .then((res) => {
-      return res.data.topic;
+      return res.data.articles;
     })
     .catch((err) => {
-      console.dir(err, "<<<<<<<getSingleTopics---api");
+      throw err;
     });
 };
 
@@ -52,8 +56,7 @@ export const getSingleUser = (username) => {
       return res.data.user;
     })
     .catch((err) => {
-      if (err) throw err;
-      console.dir(err, "<<<<<<<getSingleUser---api");
+      throw err;
     });
 };
 
@@ -83,7 +86,7 @@ export const getSingleArticle = (article_id) => {
       return res.data.article;
     })
     .catch((err) => {
-      console.log(err, "<<<<<<<getSingleArticle---api");
+      throw err;
     });
 };
 
@@ -94,7 +97,7 @@ export const getCommentsByArticle = (article_id) => {
       return res.data.comments;
     })
     .catch((err) => {
-      console.log(err, "<<<<<<<getCommentsByArticle---api");
+      throw err;
     });
 };
 

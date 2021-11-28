@@ -1,39 +1,44 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getAllArticles, getSingleTopic } from "../utils/api";
+import { getAllTopics, getArticlesByTopic } from "../utils/api";
 import ArticleCardsSection from "./ArticlesComponents/ArticleCardsSection";
+import ErrorSection from "./ErrorSecsion";
 
 const SingleTopic = () => {
   const { topic: slug } = useParams();
   const [singleTopic, setSingleTopic] = useState([]);
   const [articles, setArticles] = useState([]);
+  const [err, setErr] = useState(null);
 
   useEffect(() => {
-    getSingleTopic(slug)
-      .then((topicFromApi) => {
-        setSingleTopic(topicFromApi);
-      })
-      .catch((err) => {
-        console.dir(err, "<<<<<<<<err in SingleTopic >>>>>>getSingleTopic");
-      });
-  }, [slug]);
-  useEffect(() => {
-    getAllArticles()
+    getArticlesByTopic(slug)
       .then((articlesFromApi) => {
-        const articlesByTopic = articlesFromApi.filter(
-          (article) => article.topic === slug
-        );
-        setArticles(articlesByTopic);
+        setArticles(articlesFromApi);
+        getAllTopics().then((topicFromApi) => {
+          setSingleTopic(topicFromApi);
+        });
       })
       .catch((err) => {
-        console.log(err, "<<<<<<<<err in SingleTopic >>>>>>getAllArticles");
+        if (err.response.status === 404) setErr(err.response.data.msg);
+        else if (err.response.status === 400)
+          setErr("Invalid input. Please check the article id...");
+        else setErr("Something has gone wrong...");
       });
   }, [slug]);
+
   return (
     <main className="SingleTopic">
-      <h1 className="single-topic-title">{singleTopic.slug}</h1>
-      <h2 className="single-topic-description">{singleTopic.description}</h2>
-      <ArticleCardsSection articles={articles} />
+      {!!err ? (
+        <ErrorSection err={err} />
+      ) : (
+        <>
+          <h1 className="single-topic-title">{singleTopic.slug}</h1>
+          <h2 className="single-topic-description">
+            {singleTopic.description}
+          </h2>
+          <ArticleCardsSection articles={articles} />
+        </>
+      )}
     </main>
   );
 };

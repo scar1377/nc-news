@@ -99,14 +99,24 @@
   padding: 20px;
 }
 
-.article-card,
-.topic-card {
+.article-card {
   width: 40vw;
-  padding: 20px;
+  background-color: rgb(171, 236, 236);
 }
 
 .comment-card {
   width: 80%;
+  background-color: rgb(243, 203, 210);
+}
+
+.topic-card {
+  width: 25vw;
+  background-color: rgb(218, 247, 176);
+}
+
+.article-card,
+.comment-card,
+.topic-card {
   padding: 20px;
 }
 
@@ -233,6 +243,9 @@
 .is-loading-img {
   width: 150px;
   height: auto;
+}
+.err-img {
+  width: 150px;
 }
 
 .article-title {

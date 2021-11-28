@@ -2,6 +2,8 @@ import { getAllArticles } from "../utils/api";
 import { useEffect, useState } from "react";
 import ArticleHeader from "./ArticlesComponents/ArticleHeader";
 import ArticleCardsSection from "./ArticlesComponents/ArticleCardsSection";
+import ErrorSection from "./ErrorSecsion";
+
 const Articles = () => {
   const [articles, setArticles] = useState([]);
   const [sortBy, setSortBy] = useState();
@@ -18,19 +20,26 @@ const Articles = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log(err, "<<<<<<<<err in AllArticles, getAllArticles");
+        if (err.response.data.status === 404) setErr("Path not found...");
+        else setErr("Something has gone wrong...");
       });
   }, [sortBy, author]);
   if (isLoading === true) {
     return (
       <main key="articles-main" className="Articles">
-        <ArticleHeader setAuthor={setAuthor} setSortBy={setSortBy} />
-        <img
-          className="is-loading-img"
-          src="https://hackernoon.com/images/0*4Gzjgh9Y7Gu8KEtZ.gif"
-          alt="Loading"
-        />
-        <h2 className="is-loading">On the way...</h2>
+        {!!err ? (
+          <ErrorSection err={err} />
+        ) : (
+          <>
+            <ArticleHeader setAuthor={setAuthor} setSortBy={setSortBy} />
+            <img
+              className="is-loading-img"
+              src="https://hackernoon.com/images/0*4Gzjgh9Y7Gu8KEtZ.gif"
+              alt="Loading"
+            />
+            <h2 className="is-loading">On the way...</h2>
+          </>
+        )}
       </main>
     );
   }
