@@ -159,6 +159,10 @@
 .article-page {
   text-decoration: none;
 }
+.topics-title {
+  text-transform: capitalize;
+  color: rgb(90, 14, 14);
+}
 
 .single-topic-title {
   text-transform: capitalize;

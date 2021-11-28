@@ -29,7 +29,7 @@ const Topics = () => {
               {topics.map((topic) => {
                 return (
                   <li key={`${topic.slug}`} className="topic-card">
-                    <p>{topic.slug}</p>
+                    <h2 className="topics-title">{topic.slug}</h2>
                     <p>{topic.description}</p>
                     <button
                       className="goto topic-related-articles"
