@@ -15,7 +15,10 @@ const SingleTopic = () => {
       .then((articlesFromApi) => {
         setArticles(articlesFromApi);
         getAllTopics().then((topicFromApi) => {
-          setSingleTopic(topicFromApi);
+          const filteredTopic = topicFromApi.filter(
+            (topic) => topic.slug === slug
+          );
+          setSingleTopic(filteredTopic[0]);
         });
       })
       .catch((err) => {
