@@ -1,10 +1,13 @@
 import { getAllUsers } from "../utils/api";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ErrorSection from "./ErrorSection";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [err, setErr] = useState(null);
+
   useEffect(() => {
     setIsLoading(true);
     getAllUsers()
@@ -13,7 +16,7 @@ const Users = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log(err, "<<<<<<<<err in AllUsers >>>>>>getAllUsers");
+        setErr("Something has gone wrong...");
       });
   }, []);
   if (isLoading === true) {
@@ -32,25 +35,34 @@ const Users = () => {
   return (
     <main className="Users">
       <h1>Users</h1>
-      {users.map((user) => {
-        return (
-          <ul key={`${user.username}ul`}>
-            <li key={`${user.username}`} className="user-container">
-              <Link to={`/users/${user.username}`} className="go-to user-page">
-                <p>
-                  <img
-                    key={`${user.username}_avatar`}
-                    className="user-avatar"
-                    src={user.avatar_url}
-                    alt={user.name}
-                  />
-                </p>
-                <h2 className="user-name">{user.name}</h2>
-              </Link>
-            </li>
-          </ul>
-        );
-      })}
+      {!!err ? (
+        <ErrorSection err={err} />
+      ) : (
+        <>
+          {users.map((user) => {
+            return (
+              <ul key={`${user.username}ul`}>
+                <li key={`${user.username}`} className="user-container">
+                  <Link
+                    to={`/users/${user.username}`}
+                    className="go-to user-page"
+                  >
+                    <p>
+                      <img
+                        key={`${user.username}_avatar`}
+                        className="user-avatar"
+                        src={user.avatar_url}
+                        alt={user.name}
+                      />
+                    </p>
+                    <h2 className="user-name">{user.name}</h2>
+                  </Link>
+                </li>
+              </ul>
+            );
+          })}
+        </>
+      )}
     </main>
   );
 };

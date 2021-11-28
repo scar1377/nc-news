@@ -1,7 +1,9 @@
+import { useState } from "react";
 import useCount from "../../Hooks/useCount";
 import { updateCommentVotes } from "../../utils/api";
 const CommentVoter = ({ comment_id, votes }) => {
   const { count, incCount, deCount } = useCount();
+  const [err, setErr] = useState(null);
   return (
     <section className="Voter">
       <button
@@ -10,10 +12,7 @@ const CommentVoter = ({ comment_id, votes }) => {
         onClick={() => {
           incCount();
           updateCommentVotes(comment_id, 1).catch((err) => {
-            console.log(
-              err,
-              "<<<<<<<<err in CommentVoter >>>>>>updateCommentVotes"
-            );
+            setErr("Something has gone wrong...");
           });
         }}
       >
@@ -25,16 +24,14 @@ const CommentVoter = ({ comment_id, votes }) => {
         onClick={() => {
           deCount();
           updateCommentVotes(comment_id, -1).catch((err) => {
-            console.log(
-              err,
-              "<<<<<<<<err in CommentVoter >>>>>>updateCommentVotes"
-            );
+            setErr("Something has gone wrong...");
           });
         }}
       >
         👎
       </button>
       <span>{votes + count}</span>
+      {!!err ? <span className="inline-err-msg">{err}</span> : null}
     </section>
   );
 };

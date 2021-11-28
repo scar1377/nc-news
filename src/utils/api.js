@@ -45,7 +45,7 @@ export const getAllUsers = () => {
       return res.data.users;
     })
     .catch((err) => {
-      console.log(err, "<<<<<<<getAllUsers---api");
+      throw err;
     });
 };
 
@@ -75,7 +75,7 @@ export const getAllArticles = (sortBy, author) => {
       }
     })
     .catch((err) => {
-      console.log(err, "<<<<<<<getAllArticles---api");
+      throw err;
     });
 };
 
@@ -109,7 +109,7 @@ export const updateArticleVotes = (article_id, vote) => {
       return res.data.article;
     })
     .catch((err) => {
-      console.log(err, "<<<<<<<updateArticleVotes---api");
+      throw err;
     });
 };
 
@@ -121,7 +121,7 @@ export const updateCommentVotes = (comment_id, vote) => {
       return res.data.comment;
     })
     .catch((err) => {
-      console.log(err, "<<<<<<<updateCommentVotes---api");
+      throw err;
     });
 };
 
@@ -146,6 +146,6 @@ export const deleteSingleComment = (comment_id) => {
       return res.data;
     })
     .catch((err) => {
-      console.log(err, "<<<<<<<deleteSingleComment---api");
+      throw err;
     });
 };
