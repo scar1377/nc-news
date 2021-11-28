@@ -18,13 +18,19 @@ const SingleArticleSection = ({
         <h1>{singleArticle.title}</h1>
         <span>{singleArticle.created_at}</span>
         <span>{singleArticle.comment_count}</span>
-        <Link to={`/users/${singleArticle.author}`}>
+        <Link
+          to={`/users/${singleArticle.author}`}
+          className="link-to-category"
+        >
           <p>{singleArticle.author}</p>
         </Link>
-        <Link to={`/topics/${singleArticle.topic}`}>
+        <Link
+          to={`/topics/${singleArticle.topic}`}
+          className="link-to-category"
+        >
           <p>{singleArticle.topic}</p>
         </Link>
-        <p>{singleArticle.body}</p>
+        <p className="article-text">{singleArticle.body}</p>
         {!!isLoggedIn ? (
           <>
             <form

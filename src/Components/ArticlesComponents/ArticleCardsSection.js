@@ -21,13 +21,15 @@ const ArticleCardsSection = (prop) => {
                 >
                   {article.title}
                 </h2>
-                <p key={`${article.article_id}_author`}>{article.author}</p>
+                <hr className="hr-thread" />
                 <p
                   key={`${article.article_id}_created_at`}
                   className="article-created-at"
                 >
                   {convertDate(article.created_at)}
                 </p>
+
+                <p key={`${article.article_id}_author`}>{article.author}</p>
                 <p
                   key={`${article.article_id}_votes_by_user_number`}
                   className="comments-and-likes"

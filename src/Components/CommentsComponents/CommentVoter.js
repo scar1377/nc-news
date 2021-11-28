@@ -18,6 +18,7 @@ const CommentVoter = ({ comment_id, votes }) => {
       >
         👍
       </button>
+      <span> {votes + count} </span>
       <button
         key={`${comment_id}_vote_down_button`}
         className="comment-vote-button"
@@ -30,7 +31,6 @@ const CommentVoter = ({ comment_id, votes }) => {
       >
         👎
       </button>
-      <span>{votes + count}</span>
       {!!err ? <span className="inline-err-msg">{err}</span> : null}
     </section>
   );
