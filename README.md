@@ -1,70 +1,112 @@
-# Getting Started with Create React App
+# Northcoders News - Front End
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src="https://victorine.ch/wordpress/wp-content/uploads/2014/03/news.jpg"></a>
 
-## Available Scripts
+<p align="right"><font size=1>*The picture is from internet</font></p>
+## Introduction
 
-In the project directory, you can run:
+NC news is a Reddit-style news website. It is the front-end built using `React` for interacting with Northcoders News - SZA API.
 
-### `npm start`
+It allows users to -
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- view a list of all articles
+- view a page for each topic with a list of related articles.
+- view an individual article.
+- view an individual article's comments.
+- vote on an article and immediately see the change.
+- post a new comment to an existing article (as a valid user from a drop-down box. e.g. 'tickle122').
+- sort articles by:
+  - date created
+  - comment_count
+  - votes
+  - delete my own comments (as a valid user from a drop-down box. e.g. 'tickle122').
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**Deployed using <a href="https://www.netlify.com/">Netlife</a>**
 
-### `npm test`
+**To visit the hosted site please visit https://szanews.herokuapp.com/api**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+### **Prerequisites**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- react version 17.0.2
+- axios 0.24.0
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### **Installation**
 
-### `npm run eject`
+#### To run this project, listed dependencies are needed
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- date-fns
+- react-dom
+- react-router-dom
+- react-scripts
+- web-vitals
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### To run locally
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Clone the repository
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+git clone https://github.com/scar1377/nc-news
+```
 
-## Learn More
+2. Navigate into the repository
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+cd nc-news
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Install the required dependencies by using
 
-### Code Splitting
+```
+npm i
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+4. Launch the application locally
 
-### Analyzing the Bundle Size
+```
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### **Link to API and back end repository**
 
-### Making a Progressive Web App
+**Link to API: https://szanews.herokuapp.com/api**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**Link to back end repo: https://github.com/scar1377/be-nc-news-sza**
 
-### Advanced Configuration
+In order to use `node-postgres` to connect to different databases, we need two .env files. Duplicate the `.env-example` and rename both of them to `.env.test` and `.env.development`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+in `.env.development`
 
-### Deployment
+```
+PGDATABASE=development_database_name
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+in `.env.test`
 
-### `npm run build` fails to minify
+```
+PGDATABASE=test_database_name
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Now we can seed the local databases**
+
+please run the following CLI
+
+```
+npm run setup-dbs
+npm run seed
+```
+
+To check the tables please run (optional)
+
+```
+npm run check
+```
+
+To test all the endpoints please run
+
+```
+npm test
+```
