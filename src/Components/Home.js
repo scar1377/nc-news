@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useEffect } from "react/cjs/react.development";
+import { useEffect } from "react";
 import { getToHomePage } from "../utils/api";
 import Articles from "./AllArticles";
 import ErrorSection from "./ErrorSection";

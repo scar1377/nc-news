@@ -2,7 +2,7 @@ import { userContext } from "../Contexts/userContext";
 import { useContext } from "react";
 import { useState } from "react";
 import { getSingleUser } from "../utils/api";
-import { useEffect } from "react/cjs/react.development";
+import { useEffect } from "react";
 import NavLink from "./NavComponents/NavLink";
 import NavAfterLogin from "./NavComponents/NavAfterLogin";
 import NavBeforeLogin from "./NavComponents/NavBeforeLogin";

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react/cjs/react.development";
+import { useContext, useState } from "react";
 import { userContext } from "../../Contexts/userContext";
 import { postCommentByArticle } from "../../utils/api";
 import { convertDate } from "../../utils/utils";
