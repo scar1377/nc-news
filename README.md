@@ -23,7 +23,7 @@ It allows users to -
 
 **Deployed using <a href="https://www.netlify.com/">Netlife</a>**
 
-**To visit the hosted site please visit https://szanews.herokuapp.com/api**
+**To visit the hosted site please visit https://nc-news-sza.netlify.app/**
 
 ---
 

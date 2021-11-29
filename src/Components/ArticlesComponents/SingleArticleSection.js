@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { userContext } from "../../Contexts/userContext";
 import { postCommentByArticle } from "../../utils/api";
-import { convertDate } from "../../utils/utils";
 
 const SingleArticleSection = ({
   singleArticle,
@@ -17,24 +16,31 @@ const SingleArticleSection = ({
     <div className="SingleArticleSection">
       <section className="single-article-section">
         <h1>{singleArticle.title}</h1>
-        <span className="created-at single-article-created-at">
-          {singleArticle.created_at}
-        </span>
-        <span className="comment-counts single-article-comment-counts">
-          💬 {singleArticle.comment_counts}
-        </span>
-        <Link
-          to={`/users/${singleArticle.author}`}
-          className="link-to-category"
-        >
-          <p>{singleArticle.author}</p>
-        </Link>
-        <Link
-          to={`/topics/${singleArticle.topic}`}
-          className="link-to-category"
-        >
-          <p>{singleArticle.topic}</p>
-        </Link>
+        <section className="single-article-link-section">
+          <Link
+            to={`/users/${singleArticle.author}`}
+            className="link-to-category"
+          >
+            <span className="single-article-link article-author">
+              {singleArticle.author}
+            </span>
+          </Link>
+          <Link
+            to={`/topics/${singleArticle.topic}`}
+            className="link-to-category"
+          >
+            <span className="single-article-link article-topic">
+              {singleArticle.topic}
+            </span>
+          </Link>
+          <span className="created-at single-article-created-at">
+            {singleArticle.created_at};
+          </span>
+          <span className="comment-counts single-article-comment-counts">
+            💬 {singleArticle.comment_counts}
+          </span>
+        </section>
+        <hr className="long-hr-line single-article-hr" />
         <p className="article-text">{singleArticle.body}</p>
         {!!isLoggedIn ? (
           <>

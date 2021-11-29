@@ -39,7 +39,7 @@ const ArticleVoter = ({ article_id, votes }) => {
             });
           }}
         >
-          <i class="far fa-thumbs-down"></i>
+          <i className="far fa-thumbs-down"></i>
         </button>
         {!!err ? <span className="inline-err-msg">{err}</span> : null}
       </section>
