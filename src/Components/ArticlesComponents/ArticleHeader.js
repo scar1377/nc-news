@@ -4,7 +4,6 @@ const ArticleHeader = ({ setAuthor, setSortBy }) => {
   const [authorOnChange, setAuthorOnChange] = useState();
   return (
     <div className="ArticleHeader">
-      <h1 key="articles-h1">Articles</h1>
       <section className="sort-bar">
         <form
           className="search-form"
@@ -40,6 +39,7 @@ const ArticleHeader = ({ setAuthor, setSortBy }) => {
           <option key="comment_count">comment_counts</option>
           <option key="votes">votes</option>
         </select>
+        <hr className="long-hr-line" />
       </section>
     </div>
   );

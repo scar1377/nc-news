@@ -16,7 +16,7 @@ const CommentVoter = ({ comment_id, votes }) => {
           });
         }}
       >
-        👍
+        <i class="far fa-thumbs-up"></i>
       </button>
       <span> {votes + count} </span>
       <button
@@ -29,7 +29,7 @@ const CommentVoter = ({ comment_id, votes }) => {
           });
         }}
       >
-        👎
+        <i class="far fa-thumbs-down"></i>
       </button>
       {!!err ? <span className="inline-err-msg">{err}</span> : null}
     </section>
