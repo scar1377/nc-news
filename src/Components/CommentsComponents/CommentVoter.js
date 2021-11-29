@@ -4,13 +4,17 @@ import { updateCommentVotes } from "../../utils/api";
 const CommentVoter = ({ comment_id, votes }) => {
   const { count, incCount, deCount } = useCount();
   const [err, setErr] = useState(null);
+  const [oneClick, setOneClick] = useState(false);
   return (
     <section className="Voter">
       <button
         key={`${comment_id}_vote_up_button`}
         className="comment-vote-button"
         onClick={() => {
-          incCount();
+          if (!oneClick) {
+            incCount();
+            setOneClick(true);
+          }
           updateCommentVotes(comment_id, 1).catch((err) => {
             setErr("Something has gone wrong...");
           });
@@ -23,7 +27,11 @@ const CommentVoter = ({ comment_id, votes }) => {
         key={`${comment_id}_vote_down_button`}
         className="comment-vote-button"
         onClick={() => {
-          deCount();
+          if (!oneClick) {
+            deCount();
+            setOneClick(true);
+          }
+
           updateCommentVotes(comment_id, -1).catch((err) => {
             setErr("Something has gone wrong...");
           });

@@ -5,6 +5,7 @@ import { useState } from "react";
 const ArticleVoter = ({ article_id, votes }) => {
   const { count, incCount, deCount } = useCount();
   const [err, setErr] = useState(null);
+  const [oneClick, setOneClick] = useState(false);
   return (
     <>
       <section className="Voter">
@@ -12,7 +13,11 @@ const ArticleVoter = ({ article_id, votes }) => {
           key={`${article_id}_vote_up_button`}
           className="article-vote-button"
           onClick={() => {
-            incCount();
+            if (!oneClick) {
+              incCount();
+              setOneClick(true);
+            }
+
             updateArticleVotes(article_id, 1).catch((err) => {
               setErr("Something has gone wrong...");
             });
@@ -25,7 +30,10 @@ const ArticleVoter = ({ article_id, votes }) => {
           key={`${article_id}_vote_down_button`}
           className="article-vote-button"
           onClick={() => {
-            deCount();
+            if (!oneClick) {
+              deCount();
+              setOneClick(true);
+            }
             updateArticleVotes(article_id, -1).catch((err) => {
               setErr("Something has gone wrong...");
             });

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useContext, useState } from "react/cjs/react.development";
 import { userContext } from "../../Contexts/userContext";
 import { postCommentByArticle } from "../../utils/api";
+import { convertDate } from "../../utils/utils";
 
 const SingleArticleSection = ({
   singleArticle,
@@ -16,8 +17,12 @@ const SingleArticleSection = ({
     <div className="SingleArticleSection">
       <section className="single-article-section">
         <h1>{singleArticle.title}</h1>
-        <span>{singleArticle.created_at}</span>
-        <span>{singleArticle.comment_count}</span>
+        <span className="created-at single-article-created-at">
+          {singleArticle.created_at}
+        </span>
+        <span className="comment-counts single-article-comment-counts">
+          💬 {singleArticle.comment_counts}
+        </span>
         <Link
           to={`/users/${singleArticle.author}`}
           className="link-to-category"

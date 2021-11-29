@@ -114,6 +114,12 @@
   /* width: 80vw; */
   box-shadow: none;
   margin: 20px auto;
+  padding: 20px 40px;
+}
+.single-article-created-at,
+.single-article-comment-counts {
+  display: inline-block;
+  margin-left: 30px;
 }
 
 .article-text {
@@ -334,4 +340,5 @@ main {
 i {
   font-size: 20px;
   color: rgb(58, 57, 57);
+  background-color: white;
 }
