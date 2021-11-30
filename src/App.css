@@ -88,7 +88,6 @@
 .article-created-at {
   font-size: 12px;
   padding: 0px;
-  line-height: 20px;
   margin-top: 0px;
   /* display: inline-flex;
   justify-self: flex-start; */
@@ -151,7 +150,6 @@
 
 .article-card {
   width: 35%;
-  min-width: 150px;
   background-color: rgb(255, 255, 255);
 }
 
@@ -172,6 +170,7 @@
   padding: 20px;
   border-radius: 5%;
   margin: 15px;
+  min-width: 280px;
 }
 .article-card-bits {
   padding: 0px auto;

@@ -3,7 +3,8 @@
 <img src="https://victorine.ch/wordpress/wp-content/uploads/2014/03/news.jpg"></a>
 
 <p align="right"><font size=1>*The picture is from internet</font></p>
-## Introduction
+
+### **Introduction**
 
 NC news is a Reddit-style news website. It is the front-end built using `React` for interacting with Northcoders News - SZA API.
 
