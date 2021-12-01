@@ -11,7 +11,7 @@ const ArticleVoter = ({ article_id, votes }) => {
       <section className="Voter">
         <button
           key={`${article_id}_vote_up_button`}
-          className="article-vote-button"
+          className="vote-button article-vote-button"
           onClick={() => {
             if (!oneClick) {
               incCount();
@@ -28,7 +28,7 @@ const ArticleVoter = ({ article_id, votes }) => {
         <span> {votes + count} </span>
         <button
           key={`${article_id}_vote_down_button`}
-          className="article-vote-button"
+          className="vote-button article-vote-button"
           onClick={() => {
             if (!oneClick) {
               deCount();

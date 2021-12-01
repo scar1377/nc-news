@@ -9,7 +9,7 @@ const CommentVoter = ({ comment_id, votes }) => {
     <section className="Voter">
       <button
         key={`${comment_id}_vote_up_button`}
-        className="comment-vote-button"
+        className="vote-button comment-vote-button"
         onClick={() => {
           if (!oneClick) {
             incCount();
@@ -25,7 +25,7 @@ const CommentVoter = ({ comment_id, votes }) => {
       <span> {votes + count} </span>
       <button
         key={`${comment_id}_vote_down_button`}
-        className="comment-vote-button"
+        className="vote-button comment-vote-button"
         onClick={() => {
           if (!oneClick) {
             deCount();
