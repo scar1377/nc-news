@@ -23,7 +23,7 @@ const ArticleHeader = ({ setAuthor, setSortBy }) => {
               setAuthorOnChange(e.target.value);
             }}
           />
-          <input type="submit" value="Search" />
+          <input type="submit" value="Search" className="search-submit" />
         </form>
         <select
           className="sort-by"

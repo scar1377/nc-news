@@ -31,6 +31,8 @@
   z-index: 1;
 }
 
+/* --------------Nav bar------------- */
+
 .Nav {
   background-color: cadetblue;
   width: 100vw;
@@ -38,28 +40,90 @@
   margin-top: 20vh;
   padding: 5px;
   position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   z-index: 1;
 }
+
+.Nav-link-section {
+  margin-left: 30px;
+  left: 40px;
+  vertical-align: middle;
+}
+.Nav-link {
+  color: #083a13;
+  padding: 5px 10px;
+  margin-right: 30px;
+}
+.Nav-link:hover {
+  color: orangered;
+}
+
+.Nav-login {
+  display: inline-block;
+  height: 25px;
+  position: relative;
+  right: 20px;
+  vertical-align: middle;
+}
+.Nav-login-info {
+  position: relative;
+  right: 20px;
+}
+
+.Nav-login-img {
+  top: 0px;
+  right: 30px;
+  position: relative;
+  margin: 0px;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  object-fit: cover;
+  border: 2px solid green;
+  padding: 2px;
+  border-radius: 50%;
+  opacity: 1;
+  display: block;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+
+.login-info .user-container {
+  position: relative;
+  width: 50%;
+}
+
+/* -------------- Articles, topic-cards included ------------- */
 
 .Articles {
   grid-area: main;
 }
+.ArticleHeder {
+  vertical-align: middle;
+}
 
+.sort-bar {
+  vertical-align: middle;
+  float: inline-end;
+}
 .search-form {
   display: inline-block;
-  margin-right: 30px;
-  position: relative;
-  left: 200px;
+  margin-right: 90px;
+}
+.search-bar {
+  margin-left: 5px;
+  height: 27px;
+}
+.search-submit {
+  height: 30px;
 }
 
 .sort-by {
-  position: absolute;
-  right: 20px;
-}
-
-.article-votes,
-.article-comments-count {
-  left: 10px;
+  display: inline-block;
+  height: 30px;
+  vertical-align: middle;
 }
 
 .article-cards,
@@ -71,6 +135,12 @@
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
+  text-align: center;
+}
+
+.article-votes,
+.article-comments-count {
+  left: 10px;
 }
 
 .inline-wrap {
@@ -89,18 +159,10 @@
   font-size: 12px;
   padding: 0px;
   margin-top: 0px;
-  /* display: inline-flex;
-  justify-self: flex-start; */
   text-align: left;
 }
 
-.article-cards,
-.comment-cards,
-.topic-cards {
-  /* width: 40vw; */
-  text-align: center;
-  padding: 20px;
-}
+/* -------------- SingleArticle with comments ------------- */
 
 .SingleArticleSection {
   width: 80vw;
@@ -111,29 +173,33 @@
   margin: 20px auto;
 }
 .single-article-section {
-  /* width: 80vw; */
   box-shadow: none;
   margin: 20px auto;
   padding: 20px 40px;
 }
-.single-article-created-at,
+
 .article-author {
   display: inline-block;
   margin-left: 30px;
-}
-.single-article-created-at,
-.single-article-comment-counts {
-  font-size: 14px;
-}
-.article-author,
-.article-topic {
   font-size: 16px;
 }
 
-.single-article-comment-counts,
+.single-article-created-at {
+  display: inline-block;
+  margin-left: 30px;
+  font-size: 14px;
+}
+
+.single-article-comment-counts {
+  font-size: 14px;
+  display: inline-block;
+  margin-right: 30px;
+}
+
 .article-topic {
   display: inline-block;
   margin-right: 30px;
+  font-size: 16px;
 }
 
 .article-date-comment-section-parent,
@@ -156,6 +222,7 @@
 .comment-card {
   width: 80%;
   background-color: rgb(255, 255, 255);
+  box-shadow: rgb(38, 57, 77) 0px 10px 20px -10px;
   padding: 20px;
   margin: 15px;
 }
@@ -179,9 +246,6 @@
 }
 
 .article-card:hover {
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-}
-.comment-card:hover {
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
@@ -212,54 +276,6 @@
 
 .Header-link {
   color: whitesmoke;
-}
-.Nav-link-section {
-  margin-left: 30px;
-  position: fixed;
-  left: 40px;
-}
-.Nav-link {
-  color: #083a13;
-  padding: 5px 10px;
-  margin-right: 30px;
-}
-.Nav-link:hover {
-  color: orangered;
-}
-
-.Nav-login {
-  display: inline-block;
-  position: fixed;
-  right: 20px;
-}
-.Nav-login-info {
-  position: fixed;
-  right: 20px;
-}
-
-.Nav-login-img {
-  top: 0px;
-  right: 30px;
-  position: relative;
-  margin: 0px;
-  display: inline-block;
-  height: 30px;
-  width: 30px;
-  object-fit: cover;
-  border: 2px solid green;
-  padding: 2px;
-  border-radius: 50%;
-  opacity: 1;
-  display: block;
-  /* width: 100%;
-  height: auto; */
-  transition: 0.5s ease;
-  backface-visibility: hidden;
-}
-
-.login-info .user-container {
-  position: relative;
-  width: 50%;
 }
 
 .user-avatar {
@@ -313,10 +329,17 @@
   width: 150px;
 }
 
-.inline-err-msg,
-.post-err-msg {
+.inline-err-msg {
   color: red;
   font-size: 12px;
+}
+
+.post-err-msg {
+  color: red;
+  text-decoration: underline;
+  font-size: 16px;
+  display: inline-block;
+  margin-left: 20px;
 }
 
 .error-message {
@@ -373,19 +396,26 @@ i {
   text-decoration: none;
 }
 
-/* 悬停添加箭头图标 */
-.goto {
+.goto,
+.search-submit {
   display: inline-block;
   border-radius: 4px;
-  background-color: #053c46;
   border: none;
   color: #ffff;
   text-align: center;
-  font-size: 18px;
-  padding: 10px 10px;
   cursor: pointer;
   margin: 5px;
   vertical-align: middle;
+}
+
+.search-submit {
+  background-color: rgb(62, 120, 122);
+}
+
+.goto {
+  background-color: #053c46;
+  font-size: 18px;
+  padding: 10px 10px;
 }
 
 .vote-button {
@@ -429,4 +459,11 @@ i {
 
 .vote-button:hover {
   box-shadow: 2px 2px rgb(53, 52, 52);
+}
+
+.Home {
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  bottom: 0px;
 }
