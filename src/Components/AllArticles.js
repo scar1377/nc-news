@@ -4,7 +4,7 @@ import ArticleHeader from "./ArticlesComponents/ArticleHeader";
 import ArticleCardsSection from "./ArticlesComponents/ArticleCardsSection";
 import ErrorSection from "./ErrorSection";
 
-const Articles = () => {
+const Articles = ({ isHome }) => {
   const [articles, setArticles] = useState([]);
   const [sortBy, setSortBy] = useState();
   const [author, setAuthor] = useState();
@@ -26,7 +26,11 @@ const Articles = () => {
   }, [sortBy, author]);
   if (isLoading === true) {
     return (
-      <main key="articles-main" className="Articles">
+      <main
+        key="articles-main"
+        className={!!isHome ? "no-margin-Articles" : "Articles"}
+      >
+        <h1>Articles</h1>
         {!!err ? (
           <ErrorSection err={err} />
         ) : (
@@ -45,7 +49,11 @@ const Articles = () => {
   }
 
   return (
-    <main key="articles-main" className="Articles">
+    <main
+      key="articles-main"
+      className={!!isHome ? "no-margin-Articles" : "Articles"}
+    >
+      {!!isHome ? null : <h1>Articles</h1>}
       <ArticleHeader setAuthor={setAuthor} setSortBy={setSortBy} />
       {!!err ? (
         <div className="err">

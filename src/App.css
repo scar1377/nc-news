@@ -143,6 +143,10 @@
   left: 10px;
 }
 
+.votes {
+  margin-right: 20px;
+}
+
 .inline-wrap {
   border: none;
   display: inline-block;
@@ -386,10 +390,19 @@ main {
   color: rgb(170, 169, 169);
 }
 
-i {
+.far {
   font-size: 20px;
   color: rgb(58, 57, 57);
   background-color: white;
+}
+.voted-up {
+  font-size: 20px;
+  color: rgb(67, 189, 77);
+  background-color: white;
+}
+
+.voted-down {
+  color: red;
 }
 
 .link-to-category {
@@ -431,7 +444,9 @@ i {
   margin: 5px;
   vertical-align: middle;
   box-shadow: 1px 1px rgb(38, 75, 4);
+  z-index: 1;
 }
+
 .goto span {
   cursor: pointer;
   display: inline-block;
@@ -462,8 +477,18 @@ i {
 }
 
 .Home {
-  margin: 0px;
+  margin-bottom: 0px;
   padding: 0px;
   position: relative;
+  top: 30vh;
   bottom: 0px;
+}
+
+.Articles {
+  margin-top: 30vh;
+}
+
+.no-margin-Articles {
+  margin-top: 0px;
+  float: inline-start;
 }
